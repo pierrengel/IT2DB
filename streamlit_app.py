@@ -13,27 +13,24 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ---- Header Layout: Logo + Title + Dropdown ----
-st.markdown("""
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-    <div style="display: flex; align-items: center; gap: 1rem;">
-        <img src="LOGOBODO.jpg" alt="BODO Logo" style="height: 100px;">
-        <h1 style="margin: 0;">BODO</h1>
-    </div>
-    <div style="width: 150px;">
-""", unsafe_allow_html=True)
+# ---- Header Layout: Logo left, Dropdown right ----
+col1, col2, col3 = st.columns([2, 5, 1])
 
-# ---- Dropdown Selector ----
-category_map = {
-    "Paprika": "C1",
-    "Karotten": "C2"
-}
-selection = st.selectbox(" ", list(category_map.keys()), label_visibility="collapsed", key="main_category")
-category = category_map[selection]
+with col1:
+    st.image("LOGOBODO.jpg", width=140)
 
-st.markdown("</div></div>", unsafe_allow_html=True)
+with col2:
+    st.write("")  # Spacer
 
-# ---- Three Column Layout ----
+with col3:
+    category_map = {
+        "Paprika": "C1",
+        "Karotten": "C2"
+    }
+    selection = st.selectbox(" ", list(category_map.keys()), label_visibility="collapsed", key="main_category")
+    category = category_map[selection]
+
+# ---- Three Column Layout for Cards ----
 col1, col2, col3 = st.columns(3)
 
 # ----------------------------- #
