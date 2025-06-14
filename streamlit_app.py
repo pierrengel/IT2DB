@@ -58,7 +58,6 @@ col1, col2, col3 = st.columns(3)
 # ----------------------------- #
 with col1:
     st.image("KLimaüberwachung.jpg", width=120)
-    st.markdown("**Gewächshaus Paprika**")
 
     klima_data = [
         ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
@@ -83,7 +82,6 @@ with col1:
 # ------------------------------------------- #
 with col2:
     st.image("Pflanzenüberwachung.jpg", width=120)
-    st.markdown("**Gewächshaus Paprika**")
 
     boden_data = [
         ("Bodenfeuchte", "41 %", "25–40 %", "🟠 Leicht erhöht"),
@@ -106,7 +104,6 @@ with col2:
 # ------------------------------------------ #
 with col3:
     st.image("Wassermanagement.jpg", width=120)
-    st.markdown("**Gewächshaus Paprika**")
 
     wasser_data = [
         ("Wasserqualität (NTU)", "5.0 NTU", "0–2 NTU", "🔴 Kritisch – Wasser evtl. gekippt")
