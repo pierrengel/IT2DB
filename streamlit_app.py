@@ -39,22 +39,12 @@ with col_dropdown:
     selection = st.selectbox(" ", list(category_map.keys()), label_visibility="collapsed", key="main_category")
     category = category_map[selection]
 
-# ---- Dynamic Content Data ----
-content = {
-    "C1": {
-        "Haha": {"desc": "Description blah blah for Haha", "data": np.random.randn(100)},
-        "Huhu": {"desc": "Something about Huhu being awesome", "data": np.random.randn(70)},
-    },
-    "C2": {
-        "Haha": {"desc": "C2 Haha content here", "data": np.random.randn(90)},
-        "Huhu": {"desc": "All about C2 Huhu", "data": np.random.randn(60)},
-    }
-}
-
 # ---- Main Card Layout ----
 col1, col2, col3 = st.columns(3)
 
-# -- Left Column: Klimaüberwachung Block --
+# ----------------------------- #
+# --- 1. Klimaüberwachung ---  #
+# ----------------------------- #
 with col1:
     if os.path.exists("KLimaüberwachung.jpg"):
         st.image("KLimaüberwachung.jpg", width=30)
@@ -79,24 +69,48 @@ with col1:
         </div>
         """, unsafe_allow_html=True)
 
-# -- Middle Column: Haha --
+# ------------------------------------------- #
+# --- 2. Pflanzen- & Bodenüberwachung ---     #
+# ------------------------------------------- #
 with col2:
     st.image("https://via.placeholder.com/30", width=30)
-    st.markdown("### Haha")
-    st.write(content[category]["Haha"]["desc"])
+    st.markdown("### Pflanzen- & Bodenüberwachung")
+    st.markdown("**Gewächshaus Paprika**")
 
-    fig, ax = plt.subplots()
-    ax.hist(content[category]["Haha"]["data"], bins=20, color="#69b3a2", edgecolor="black")
-    ax.set_title("Haha Histogram")
-    st.pyplot(fig)
+    boden_data = [
+        ("Bodenfeuchte", "41 %", "25–40 %", "🟠 Leicht erhöht"),
+        ("EC-Wert (Düngesalze)", "3.0 mS/cm", "1.0–2.0 mS/cm", "🔴 Deutlich zu hoch"),
+        ("pH-Wert (Wasser)", "7.5", "5.8–6.5", "🔴 Zu basisch")
+    ]
 
-# -- Right Column: Huhu --
+    for param, ist, soll, status in boden_data:
+        st.markdown(f"""
+        <div style='margin-bottom: 1rem; padding: 0.5rem; background-color: #1e1e1e; border-radius: 8px;'>
+            <strong>{param}</strong><br>
+            Ist-Wert: <span style='color:#fff;'>{ist}</span><br>
+            Sollbereich: <span style='color:#aaa;'>{soll}</span><br>
+            Status: <span style='font-weight:bold;'>{status}</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+# ------------------------------------------ #
+# --- 3. Wassermanagement & Sicherheit ---   #
+# ------------------------------------------ #
 with col3:
     st.image("https://via.placeholder.com/30", width=30)
-    st.markdown("### Huhu")
-    st.write(content[category]["Huhu"]["desc"])
+    st.markdown("### Wassermanagement & Sicherheit")
+    st.markdown("**Gewächshaus Paprika**")
 
-    fig, ax = plt.subplots()
-    ax.hist(content[category]["Huhu"]["data"], bins=20, color="#69b3a2", edgecolor="black")
-    ax.set_title("Huhu Histogram")
-    st.pyplot(fig)
+    wasser_data = [
+        ("Wasserqualität (NTU)", "5.0 NTU", "0–2 NTU", "🔴 Kritisch – Wasser evtl. gekippt")
+    ]
+
+    for param, ist, soll, status in wasser_data:
+        st.markdown(f"""
+        <div style='margin-bottom: 1rem; padding: 0.5rem; background-color: #1e1e1e; border-radius: 8px;'>
+            <strong>{param}</strong><br>
+            Ist-Wert: <span style='color:#fff;'>{ist}</span><br>
+            Sollbereich: <span style='color:#aaa;'>{soll}</span><br>
+            Status: <span style='font-weight:bold;'>{status}</span>
+        </div>
+        """, unsafe_allow_html=True)
