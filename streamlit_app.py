@@ -13,66 +13,31 @@ st.markdown("""
     visibility: hidden;
 }
 
-.header-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.logo-title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.logo-title img {
-    height: 80px;
-}
-
-.dropdown-container {
-    display: flex;
-    align-items: center;
-}
-
-.dropdown-container > div {
-    width: 120px !important;
-    margin-top: 0 !important;
-}
-
 .card-header {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin-bottom: 0.5rem;
 }
-
-.card-header img {
-    height: 30px;
-}
 </style>
 """, unsafe_allow_html=True)
 
-# ---- Top Header Bar ----
-st.markdown("""
-<div class="header-bar">
-    <div class="logo-title">
-        <img src="LOGOBODO.jpg" alt="BODO Logo">
-        <h1>BODO</h1>
-    </div>
-    <div class="dropdown-container">
-""", unsafe_allow_html=True)
+# ---- Header Layout: Logo | Title | Dropdown ----
+col_logo, col_title, col_dropdown = st.columns([1, 4, 1])
 
-# ---- Category Selector ----
-category_map = {
-    "Paprika": "C1",
-    "Karotten": "C2"
-}
-selection = st.selectbox(" ", list(category_map.keys()), label_visibility="collapsed", key="main_category")
-category = category_map[selection]
+with col_logo:
+    st.image("LOGOBODO.jpg", width=80)
 
-# ---- Close the Top Bar ----
-st.markdown("</div></div>", unsafe_allow_html=True)
+with col_title:
+    st.markdown("<h1 style='margin-top: 20px;'>BODO</h1>", unsafe_allow_html=True)
+
+with col_dropdown:
+    category_map = {
+        "Paprika": "C1",
+        "Karotten": "C2"
+    }
+    selection = st.selectbox(" ", list(category_map.keys()), label_visibility="collapsed", key="main_category")
+    category = category_map[selection]
 
 # ---- Dynamic Content Data ----
 content = {
@@ -90,7 +55,7 @@ content = {
 
 # ---- Local logo paths for each card ----
 logo_paths = {
-    "Hihi": "hihi_logo.png",   # Replace with actual filenames
+    "Hihi": "hihi_logo.png",   # Make sure these exist in your project folder
     "Haha": "haha_logo.png",
     "Huhu": "huhu_logo.png"
 }
@@ -99,13 +64,8 @@ logo_paths = {
 col1, col2, col3 = st.columns(3)
 for col, name in zip([col1, col2, col3], ["Hihi", "Haha", "Huhu"]):
     with col:
-        st.markdown(f"""
-        <div class="card-header">
-            <img src="{logo_paths[name]}" alt="{name} Logo">
-            <h3>{name}</h3>
-        </div>
-        """, unsafe_allow_html=True)
-
+        st.image(logo_paths[name], width=30)
+        st.markdown(f"### {name}")
         st.write(content[category][name]["desc"])
 
         fig, ax = plt.subplots()
