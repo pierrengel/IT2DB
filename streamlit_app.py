@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 # ---- Page Setup ----
 st.set_page_config(layout="wide")
@@ -12,7 +13,6 @@ st.markdown("""
 #MainMenu, footer, header {
     visibility: hidden;
 }
-
 .card-header {
     display: flex;
     align-items: center;
@@ -42,12 +42,10 @@ with col_dropdown:
 # ---- Dynamic Content Data ----
 content = {
     "C1": {
-        "Hihi": {"desc": "Random stuff for Hihi under C1", "data": np.random.randn(50)},
         "Haha": {"desc": "Description blah blah for Haha", "data": np.random.randn(100)},
         "Huhu": {"desc": "Something about Huhu being awesome", "data": np.random.randn(70)},
     },
     "C2": {
-        "Hihi": {"desc": "Different data for C2 Hihi", "data": np.random.randn(40)},
         "Haha": {"desc": "C2 Haha content here", "data": np.random.randn(90)},
         "Huhu": {"desc": "All about C2 Huhu", "data": np.random.randn(60)},
     }
@@ -55,20 +53,59 @@ content = {
 
 # ---- Local logo paths for each card ----
 logo_paths = {
-    "Hihi": "hihi_logo.png",   # Make sure these exist in your project folder
     "Haha": "haha_logo.png",
-    "Huhu": "huhu_logo.png"
+    "Huhu": "huhu_logo.png",
+    "Hihi": "hihi_logo.png"  # still used for Klimaüberwachung
 }
 
 # ---- Main Card Layout ----
 col1, col2, col3 = st.columns(3)
-for col, name in zip([col1, col2, col3], ["Hihi", "Haha", "Huhu"]):
-    with col:
-        st.image(logo_paths[name], width=30)
-        st.markdown(f"### {name}")
-        st.write(content[category][name]["desc"])
 
-        fig, ax = plt.subplots()
-        ax.hist(content[category][name]["data"], bins=20, color="#69b3a2", edgecolor="black")
-        ax.set_title(f"{name} Histogram")
-        st.pyplot(fig)
+# -- Left Column: Klimaüberwachung Block --
+with col1:
+    if os.path.exists(logo_paths["Hihi"]):
+        st.image(logo_paths["Hihi"], width=30)
+    st.markdown("### Klimaüberwachung")
+    st.markdown("**Gewächshaus Paprika**")
+
+    klima_data = [
+        ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
+        ("Luftfeuchtigkeit", "81 %", "60–80 %", "🟠 Grenzwertig"),
+        ("CO₂-Konzentration", "1001 ppm", "600–1000 ppm", "🟠 Grenzwertig"),
+        ("Lichtintensität", "225 µmol/m²/s", "150–300 µmol/m²/s", "🟢 OK"),
+        ("Blatt-Temperatur", "27 °C", "18–26 °C", "🔴 Zu hoch")
+    ]
+
+    for param, ist, soll, status in klima_data:
+        st.markdown(f"""
+        <div style='margin-bottom: 1rem; padding: 0.5rem; background-color: #1e1e1e; border-radius: 8px;'>
+            <strong>{param}</strong><br>
+            Ist-Wert: <span style='color:#fff;'>{ist}</span><br>
+            Sollbereich: <span style='color:#aaa;'>{soll}</span><br>
+            Status: <span style='font-weight:bold;'>{status}</span>
+        </div>
+        """, unsafe_allow_html=True)
+
+# -- Middle Column: Haha --
+with col2:
+    if os.path.exists(logo_paths["Haha"]):
+        st.image(logo_paths["Haha"], width=30)
+    st.markdown("### Haha")
+    st.write(content[category]["Haha"]["desc"])
+
+    fig, ax = plt.subplots()
+    ax.hist(content[category]["Haha"]["data"], bins=20, color="#69b3a2", edgecolor="black")
+    ax.set_title("Haha Histogram")
+    st.pyplot(fig)
+
+# -- Right Column: Huhu --
+with col3:
+    if os.path.exists(logo_paths["Huhu"]):
+        st.image(logo_paths["Huhu"], width=30)
+    st.markdown("### Huhu")
+    st.write(content[category]["Huhu"]["desc"])
+
+    fig, ax = plt.subplots()
+    ax.hist(content[category]["Huhu"]["data"], bins=20, color="#69b3a2", edgecolor="black")
+    ax.set_title("Huhu Histogram")
+    st.pyplot(fig)
