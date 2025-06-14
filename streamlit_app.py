@@ -28,16 +28,18 @@ button[kind="secondary"], div[data-baseweb="select"] {
     background-color: #134e4a !important;
     color: white !important;
     border-radius: 8px !important;
+    height: 42px !important;
 }
 button[kind="secondary"]:hover {
     background-color: #0f3e3a !important;
 }
 .stButton>button {
-    margin-top: 8px;
-    height: 42px;
+    height: 42px !important;
+    margin-top: 20px;
 }
 .stSelectbox > div {
     height: 42px !important;
+    margin-top: 20px;
 }
 #MainMenu, footer, header {
     visibility: hidden;
@@ -50,7 +52,8 @@ a { text-decoration: none; }
 col1, col2, col3, col4 = st.columns([2, 5, 1, 1])
 
 with col1:
-    if st.button("🏠", help="Zurück zum Dashboard"):
+    # Logo as dashboard button
+    if st.button("", key="logo_click"):
         st.session_state.page = "Dashboard"
     st.image("LOGOBODO.jpg", width=140)
 
@@ -143,11 +146,4 @@ if st.session_state.page == "Dashboard":
                 Ist-Wert: <span>{ist}</span><br>
                 Sollbereich: <span style='color:#555;'>{soll}</span><br>
                 Status: <span style='font-weight:bold;'>{status}</span>
-            </div>
-            """, unsafe_allow_html=True)
-
-# ---- PAGE 2: Handlungsempfehlungen ----
-elif st.session_state.page == "Recommendations":
-    st.title("📋 Handlungsempfehlungen")
-    st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
-    st.info("Diese Seite ist derzeit leer – zukünftige Empfehlungen erscheinen hier automatisch.")
+            </di
