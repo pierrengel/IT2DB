@@ -64,10 +64,10 @@ with col5:
         st.session_state.page = "Dashboard"
 
 # ---- PAGE 1: DASHBOARD ----
-# ---- PAGE 1: DASHBOARD ----
 if st.session_state.page == "Dashboard":
     col1, col2, col3 = st.columns(3)
 
+    # prepare the three data sets
     if category == "C1":
         klima_data = [
             ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
@@ -101,40 +101,45 @@ if st.session_state.page == "Dashboard":
             ("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")
         ]
 
+    # Left column: Wassermanagement & Sicherheit
     with col1:
-        st.image("KLimaüberwachung.jpg", width=120)
-        for p,i,s,stt in klima_data:
+        st.markdown("### Wassermanagement & Sicherheit")
+        for p, i, s, stt in wasser_data:
             st.markdown(f"""
             <div class='card'>
               <strong>{p}</strong><br>
               Ist-Wert: {i}<br>
               Sollbereich: <span style='color:#555;'>{s}</span><br>
               Status: <span style='font-weight:bold;'>{stt}</span>
-            </div>""", unsafe_allow_html=True)
+            </div>
+            """, unsafe_allow_html=True)
 
+    # Middle column: Pflanzen- & Bodenüberwachung
     with col2:
-        st.image("Pflanzenüberwachung.jpg", width=120)
-        for p,i,s,stt in boden_data:
+        st.markdown("### Pflanzen- & Bodenüberwachung")
+        for p, i, s, stt in boden_data:
             st.markdown(f"""
             <div class='card'>
               <strong>{p}</strong><br>
               Ist-Wert: {i}<br>
               Sollbereich: <span style='color:#555;'>{s}</span><br>
               Status: <span style='font-weight:bold;'>{stt}</span>
-            </div>""", unsafe_allow_html=True)
+            </div>
+            """, unsafe_allow_html=True)
 
+    # Right column: Klimaüberwachung
     with col3:
-        st.image("Wassermanagement.jpg", width=120)
-        for p,i,s,stt in wasser_data:
+        st.markdown("### Klimaüberwachung")
+        for p, i, s, stt in klima_data:
             st.markdown(f"""
             <div class='card'>
               <strong>{p}</strong><br>
               Ist-Wert: {i}<br>
               Sollbereich: <span style='color:#555;'>{s}</span><br>
               Status: <span style='font-weight:bold;'>{stt}</span>
-            </div>""", unsafe_allow_html=True)
+            </div>
+            """, unsafe_allow_html=True)
 
-# ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN ----
 # ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN (To-Do) ----
 elif st.session_state.page == "Recommendations":
     st.markdown("### 📋 Handlungsempfehlungen")
