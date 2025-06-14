@@ -1,3 +1,6 @@
+from pathlib import Path
+
+code = '''
 import streamlit as st
 
 # ---- Page Setup ----
@@ -8,7 +11,7 @@ if "page" not in st.session_state:
     st.session_state.page = "Dashboard"
 
 # ---- Custom CSS Styling ----
-st.markdown("""
+st.markdown(\"""
 <style>
 body {
     background-color: white;
@@ -46,7 +49,7 @@ button[kind="secondary"]:hover {
 }
 a { text-decoration: none; }
 </style>
-""", unsafe_allow_html=True)
+\""", unsafe_allow_html=True)
 
 # ---- Header Layout with Logo, Dropdown, and Button ----
 col1, col2, col3, col4 = st.columns([2, 5, 1, 1])
@@ -153,4 +156,16 @@ if st.session_state.page == "Dashboard":
 elif st.session_state.page == "Recommendations":
     st.markdown("### 📋 Handlungsempfehlungen")
     st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
-    st.info("Diese Seite ist derzeit leer – zukünftige Empfehlungen erscheinen hier automatisch.")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("#### ⚙️ Automatisierte Maßnahmen")
+
+    with col2:
+        st.markdown("#### 👨‍🌾 Manuelle Anweisungen für den Landwirt")
+'''
+
+code_file = Path("/mnt/data/streamlit_dashboard.py")
+code_file.write_text(code)
+code_file
