@@ -3,7 +3,7 @@ import streamlit as st
 # ---- Page Setup ----
 st.set_page_config(layout="wide")
 
-# ---- Hide Streamlit's default menu and footer ----
+# ---- Hide Streamlit's default UI ----
 hide_streamlit_style = """
     <style>
     #MainMenu {visibility: hidden;}
@@ -13,40 +13,24 @@ hide_streamlit_style = """
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-# ---- Layout Starts ----
+# ---- Layout Columns ----
+nav_col, main_col = st.columns([1.5, 6])
 
-# Create three columns for layout: navigation | spacer | main content
-nav_col, _, main_col = st.columns([1.5, 0.1, 6])
-
+# ---- Navigation Area (Left) ----
 with nav_col:
-    st.image("https://via.placeholder.com/150x80?text=LOGO")  # Placeholder logo
+    st.image("https://via.placeholder.com/150x80?text=LOGO")
 
-    # First toggle: Main Category
-    with st.expander("C1", expanded=True):
-        # Nested toggle: Sub-category
-        with st.expander("CAT1", expanded=True):
-            st.write("You selected: C1 > CAT1")
-        with st.expander("CAT2"):
-            st.write("You selected: C1 > CAT2")
-        with st.expander("CAT3"):
-            st.write("You selected: C1 > CAT3")
+    # Simulate toggles with selectboxes
+    main_category = st.selectbox("Main Category", ["C1", "C2", "C3"], key="main")
+    
+    if main_category == "C1":
+        sub_category = st.selectbox("Subcategory", ["CAT1", "CAT2", "CAT3"], key="sub_c1")
+    elif main_category == "C2":
+        sub_category = st.selectbox("Subcategory", ["CAT1", "CAT2", "CAT3"], key="sub_c2")
+    else:
+        sub_category = st.selectbox("Subcategory", ["CAT1", "CAT2", "CAT3"], key="sub_c3")
 
-    with st.expander("C2"):
-        with st.expander("CAT1"):
-            st.write("You selected: C2 > CAT1")
-        with st.expander("CAT2"):
-            st.write("You selected: C2 > CAT2")
-        with st.expander("CAT3"):
-            st.write("You selected: C2 > CAT3")
-
-    with st.expander("C3"):
-        with st.expander("CAT1"):
-            st.write("You selected: C3 > CAT1")
-        with st.expander("CAT2"):
-            st.write("You selected: C3 > CAT2")
-        with st.expander("CAT3"):
-            st.write("You selected: C3 > CAT3")
-
+# ---- Main Content Area (Right) ----
 with main_col:
-    st.title("Main Content Area")
-    st.write("This is where your dashboard content would appear.")
+    st.title("Dashboard Content")
+    st.write(f"You selected: **{main_category} > {sub_category}**")
