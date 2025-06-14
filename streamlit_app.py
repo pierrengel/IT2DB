@@ -64,7 +64,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---- Category Selector ----
-category = st.selectbox(" ", ["C1", "C2", "C3"], label_visibility="collapsed", key="main_category")
+category = st.selectbox(" ", ["Paprika", "Karotten"], label_visibility="collapsed", key="main_category")
 
 # ---- Close the Top Bar ----
 st.markdown("</div></div>", unsafe_allow_html=True)
