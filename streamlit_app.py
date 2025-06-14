@@ -1,4 +1,8 @@
-import streamlit as st
+from pathlib import Path
+
+# Show the final integrated code as requested
+code_file = Path("/mnt/data/final_dashboard_app.py")
+code = '''import streamlit as st
 
 # ---- Page Setup ----
 st.set_page_config(layout="wide")
@@ -8,7 +12,7 @@ if "page" not in st.session_state:
     st.session_state.page = "Dashboard"
 
 # ---- Custom CSS Styling ----
-st.markdown("""
+st.markdown(\"""
 <style>
 body {
     background-color: white;
@@ -46,7 +50,7 @@ button[kind="secondary"]:hover {
 }
 a { text-decoration: none; }
 </style>
-""", unsafe_allow_html=True)
+\""", unsafe_allow_html=True)
 
 # ---- Header Layout with Logo, Dropdown, and Button ----
 col1, col2, col3, col4 = st.columns([2, 5, 1, 1])
@@ -150,16 +154,11 @@ elif st.session_state.page == "Recommendations":
     st.markdown("### 📋 Handlungsempfehlungen")
     st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
     col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("#### 🛠️ Automatisierte Maßnahmen")
+    with col2:
+        st.markdown("#### 🧑‍🌾 Manuelle Anweisungen für den Landwirt")
+'''
 
-    if category == "C1":
-        with col1:
-            st.markdown("#### 🛠️ 1. Automatisierte Maßnahmen (Dashboard aktiviert Maschinensteuerung) (Gewächshaus Paprika)")
-            st.image("1894ce13-5d96-4ed5-8fe9-36dc65d5705f.png", use_column_width=True)
-        with col2:
-            st.markdown("#### 🧑‍🌾 2. Manuelle Anweisungen für den Landwirt (Bestätigung nötig) (Gewächshaus Paprika)")
-            st.image("2a9df594-1ba8-4562-a869-624ec7905cde.png", use_column_width=True)
-    else:
-        with col1:
-            st.info("Keine automatisierten Maßnahmen für Karotten verfügbar.")
-        with col2:
-            st.info("Keine manuellen Anweisungen für Karotten verfügbar.")
+code_file.write_text(code)
+code_file
