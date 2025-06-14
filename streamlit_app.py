@@ -133,14 +133,16 @@ if st.session_state.page == "Dashboard":
               Sollbereich: <span style='color:#555;'>{s}</span><br>
               Status: <span style='font-weight:bold;'>{stt}</span>
             </div>""", unsafe_allow_html=True)
-# ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN (To-Do) ----
+
 # ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN ----
+# ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN (To-Do) ----
 elif st.session_state.page == "Recommendations":
     st.markdown("### 📋 Handlungsempfehlungen")
     st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
 
     colA, colB = st.columns(2, gap="large")
-    # Column A: Automatisierte Maßnahmen
+
+    # --- Automatisierte Maßnahmen (Auto) ---
     with colA:
         st.markdown("#### ⚙️ Automatisierte Maßnahmen (Auto)")
         if category == "C1":
@@ -149,40 +151,70 @@ elif st.session_state.page == "Recommendations":
 
 🔴 Die Luftfeuchtigkeit liegt mit 81 % über dem optimalen Bereich. Die Lüftung wurde automatisch aktiviert.  
 
-🔴 Die Lufttemperatur beträgt 25 °C, die Blatttemperatur liegt zwischen 27 und 29,5 °C. Das Kühlsystem wurde zur Temperatursenkung eingeschaltet.
+🔴 Die Lufttemperatur beträgt 25 °C, die Blatttemperatur liegt zwischen 27 und 29,5 °C. Das Kühlsystem wurde zur Temperatursenkung eingeschaltet. 
 
 🔴 Der CO₂-Wert liegt bei 1001 ppm und damit über dem Grenzwert. Die CO₂-Zufuhr wurde automatisch deaktiviert.  
 
 🔴 Mehrere kritische Werte wurden gleichzeitig festgestellt. Eine Alarmmeldung wurde an den Betreiber gesendet.
 """)
-        else:
-            st.info("Keine automatischen Maßnahmen für Karotten verfügbar.")
+        elif category == "C2":
+            st.markdown("""
+🟢 Die Bodenfeuchtigkeit liegt mit 32,5 % im optimalen Bereich. Die Bewässerung wurde erfolgreich abgeschlossen. 
 
-    # Column B: Manuelle Anweisungen
+🟢 Die Luftfeuchtigkeit beträgt 70 % und liegt im Zielbereich. Die Lüftung läuft im Standardbetrieb. 
+
+🟢 Die Temperaturregelung ist stabil. Lufttemperatur (21 °C) und Blatttemperatur (22 °C) sind optimal.
+
+🟢 Der CO₂-Wert liegt mit 800 ppm im Idealbereich. Die CO₂-Zufuhr ist aktiv.  
+
+🟢 Es wurden keine kritischen Abweichungen festgestellt. Systemstatus: stabil.
+""")
+        else:
+            st.info("Keine automatisierten Maßnahmen verfügbar.")
+
+    # --- Manuelle Anweisungen (Manuell) ---
     with colB:
         st.markdown("#### 👨‍🌾 Manuelle Anweisungen (Manuell)")
         if category == "C1":
             st.markdown("""
 🔴 🧪 **Wassertank prüfen und ggf. reinigen**  
-NTU-Wert stark erhöht – kann auf Algen, Sedimente oder Bakterien im Tank hinweisen.  
+NTU-Wert stark erhöht – kann auf Algen, Sedimente oder Bakterien im Tank hinweisen.
 
 🟠 🧴 **Frischwasser oder Filter tauschen**  
-Wasserqualität außerhalb Toleranz → evtl. Wasserquelle kontaminiert.  
+Wasserqualität außerhalb Toleranz → evtl. Wasserquelle kontaminiert.
 
 🟠 ⚖️ **Düngergabe unterbrechen/anpassen**  
-EC-Wert bei 3.0–5.5 mS/cm = Überdüngung möglich → Nährstoffbrand vermeiden.  
+EC-Wert bei 3.0–5.5 mS/cm = Überdüngung möglich → Nährstoffbrand vermeiden.
 
 🟠 🧫 **Blätter auf Schimmel / Schädlinge prüfen**  
-Hohe Luftfeuchte + Wärme = optimales Milieu für Pilze.  
+Hohe Luftfeuchte + Wärme = optimales Milieu für Pilze.
 
 🟡 🧯 **Manuelle Schattierung aktivieren**  
-Licht in Kombination mit hoher Temperatur kann Verbrennungen fördern.  
+Licht in Kombination mit hoher Temperatur kann Verbrennungen fördern.
 
 🟢 🌡️ **Zusätzliche Thermomatten entfernen (falls vorhanden)**  
-Zu hohe Temperaturen → Verdacht auf interne Wärmequellen.  
+Zu hohe Temperaturen → Verdacht auf interne Wärmequellen.
 
 🟢 📋 **Daten manuell protokollieren**  
 Ggf. ergänzen, ob zusätzliche Beobachtungen gemacht wurden (Geruch, Trübung, Geräusche etc.).
 """)
+        elif category == "C2":
+            st.markdown("""
+🟢 🔍 **Routinekontrolle Wassertank**  
+Wasserqualität gut (1.0 NTU), aber regelmäßige Sichtprüfung empfehlenswert.
+
+🟢 🧴 **Filterwartung (alle X Wochen)**  
+Wasserfilter in gutem Zustand, aber Reinigung gemäß Wartungsplan prüfen.
+
+🟢 📈 **Düngermenge protokollieren**  
+EC-Wert (1.5 mS/cm) gut, aber Protokollierung hilft bei Langzeitoptimierung.
+
+🟢 📋 **Allgemeine Sichtprüfung der Pflanzen**  
+Keine Auffälligkeiten, aber regelmäßige Kontrolle auf Blattveränderungen sinnvoll.
+
+🟢 🪴 **Testweise Blattproben für Labor (optional)**  
+Zur Optimierung der Nährstoffstrategie bei empfindlicher Sorte.
+""")
         else:
-            st.info("Keine manuellen Anweisungen für Karotten verfügbar.")
+            st.info("Keine manuellen Anweisungen verfügbar.")
+
