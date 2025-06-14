@@ -51,20 +51,13 @@ content = {
     }
 }
 
-# ---- Local logo paths for each card ----
-logo_paths = {
-    "Haha": "haha_logo.png",
-    "Huhu": "huhu_logo.png",
-    "Hihi": "hihi_logo.png"  # still used for Klimaüberwachung
-}
-
 # ---- Main Card Layout ----
 col1, col2, col3 = st.columns(3)
 
 # -- Left Column: Klimaüberwachung Block --
 with col1:
-    if os.path.exists(logo_paths["Hihi"]):
-        st.image(logo_paths["Hihi"], width=30)
+    if os.path.exists("KLimaüberwachung.jpg"):
+        st.image("KLimaüberwachung.jpg", width=30)
     st.markdown("### Klimaüberwachung")
     st.markdown("**Gewächshaus Paprika**")
 
@@ -88,8 +81,7 @@ with col1:
 
 # -- Middle Column: Haha --
 with col2:
-    if os.path.exists(logo_paths["Haha"]):
-        st.image(logo_paths["Haha"], width=30)
+    st.image("https://via.placeholder.com/30", width=30)
     st.markdown("### Haha")
     st.write(content[category]["Haha"]["desc"])
 
@@ -100,8 +92,7 @@ with col2:
 
 # -- Right Column: Huhu --
 with col3:
-    if os.path.exists(logo_paths["Huhu"]):
-        st.image(logo_paths["Huhu"], width=30)
+    st.image("https://via.placeholder.com/30", width=30)
     st.markdown("### Huhu")
     st.write(content[category]["Huhu"]["desc"])
 
