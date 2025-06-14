@@ -24,6 +24,21 @@ body {
     padding: 1rem;
     margin-bottom: 1rem;
 }
+button[kind="secondary"], div[data-baseweb="select"] {
+    background-color: #134e4a !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+button[kind="secondary"]:hover {
+    background-color: #0f3e3a !important;
+}
+.stButton>button {
+    margin-top: 8px;
+    height: 42px;
+}
+.stSelectbox > div {
+    height: 42px !important;
+}
 #MainMenu, footer, header {
     visibility: hidden;
 }
@@ -35,7 +50,7 @@ a { text-decoration: none; }
 col1, col2, col3, col4 = st.columns([2, 5, 1, 1])
 
 with col1:
-    if st.button(" ", key="logo_btn"):
+    if st.button("🏠", help="Zurück zum Dashboard"):
         st.session_state.page = "Dashboard"
     st.image("LOGOBODO.jpg", width=140)
 
@@ -59,7 +74,6 @@ if st.session_state.page == "Dashboard":
     col1, col2, col3 = st.columns(3)
 
     if category == "C1":
-        # === Paprika Data ===
         klima_data = [
             ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
             ("Luftfeuchtigkeit", "81 %", "60–80 %", "🟠 Grenzwertig"),
@@ -77,7 +91,6 @@ if st.session_state.page == "Dashboard":
         ]
 
     elif category == "C2":
-        # === Karotten (Gurke) Data ===
         klima_data = [
             ("Temperatur (Luft)", "21.0 °C", "18–24 °C", "🟢 OK"),
             ("Luftfeuchtigkeit", "70.0 %", "60–80 %", "🟢 OK"),
