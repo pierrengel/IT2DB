@@ -1,7 +1,4 @@
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
 import os
 
 # ---- Page Setup ----
@@ -13,42 +10,37 @@ st.markdown("""
 #MainMenu, footer, header {
     visibility: hidden;
 }
-.card-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-}
 </style>
 """, unsafe_allow_html=True)
 
-# ---- Header Layout: Logo | Title | Dropdown ----
-col_logo, col_title, col_dropdown = st.columns([1, 4, 1])
+# ---- Header Layout: Logo + Title + Dropdown ----
+st.markdown("""
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <img src="048a54e7-9b34-4bed-b931-9c4fd1edabeb.png" alt="BODO Logo" style="height: 100px;">
+        <h1 style="margin: 0;">BODO</h1>
+    </div>
+    <div style="width: 150px;">
+""", unsafe_allow_html=True)
 
-with col_logo:
-    st.image("LOGOBODO.jpg", width=80)
+# ---- Dropdown Selector ----
+category_map = {
+    "Paprika": "C1",
+    "Karotten": "C2"
+}
+selection = st.selectbox(" ", list(category_map.keys()), label_visibility="collapsed", key="main_category")
+category = category_map[selection]
 
-with col_title:
-    st.markdown("<h1 style='margin-top: 20px;'>BODO</h1>", unsafe_allow_html=True)
+st.markdown("</div></div>", unsafe_allow_html=True)
 
-with col_dropdown:
-    category_map = {
-        "Paprika": "C1",
-        "Karotten": "C2"
-    }
-    selection = st.selectbox(" ", list(category_map.keys()), label_visibility="collapsed", key="main_category")
-    category = category_map[selection]
-
-# ---- Main Card Layout ----
+# ---- Three Column Layout ----
 col1, col2, col3 = st.columns(3)
 
 # ----------------------------- #
 # --- 1. Klimaüberwachung ---  #
 # ----------------------------- #
 with col1:
-    if os.path.exists("KLimaüberwachung.jpg"):
-        st.image("KLimaüberwachung.jpg", width=30)
-    st.markdown("### Klimaüberwachung")
+    st.image("KLimaüberwachung.jpg", width=100)
     st.markdown("**Gewächshaus Paprika**")
 
     klima_data = [
@@ -73,8 +65,7 @@ with col1:
 # --- 2. Pflanzen- & Bodenüberwachung ---     #
 # ------------------------------------------- #
 with col2:
-    st.image("https://via.placeholder.com/30", width=30)
-    st.markdown("### Pflanzen- & Bodenüberwachung")
+    st.image("Pflanzenüberwachung.jpg", width=100)
     st.markdown("**Gewächshaus Paprika**")
 
     boden_data = [
@@ -97,8 +88,7 @@ with col2:
 # --- 3. Wassermanagement & Sicherheit ---   #
 # ------------------------------------------ #
 with col3:
-    st.image("https://via.placeholder.com/30", width=30)
-    st.markdown("### Wassermanagement & Sicherheit")
+    st.image("Wassermanagement.jpg", width=100)
     st.markdown("**Gewächshaus Paprika**")
 
     wasser_data = [
