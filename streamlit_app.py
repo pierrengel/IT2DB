@@ -8,56 +8,40 @@ if "page" not in st.session_state:
     st.session_state.page = "Dashboard"
 
 # ---- Custom CSS Styling ----
-# ---- Custom CSS Styling ----
 st.markdown("""
 <style>
 body {
     background-color: white;
     color: #111;
 }
-/* Shrink the default markdown headers */
-h1 { font-size: 32px !important; }
-h2 { font-size: 24px !important; }
-h3 { font-size: 20px !important; }
-
-/* Cards: smaller text */
+[data-testid="stAppViewContainer"] {
+    background-color: white;
+    color: #111;
+}
 .card {
     background-color: #f2f2f2;
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
-    font-size: 14px;
 }
-/* Make the field labels in cards slightly larger than the values */
-.card strong {
-    font-size: 16px;
-}
-
-/* Keep buttons and selectboxes a bit tighter */
 button[kind="secondary"], div[data-baseweb="select"] {
     background-color: #134e4a !important;
     color: white !important;
     border-radius: 8px !important;
-    height: 38px !important;   /* a touch smaller height */
-    font-size: 14px !important;
+    height: 42px !important;
 }
 button[kind="secondary"]:hover {
     background-color: #0f3e3a !important;
 }
 .stButton>button {
-    height: 38px !important;
-    margin-top: 18px !important;
-    font-size: 14px !important;
+    height: 42px !important;
+    margin-top: 20px !important;
 }
 .stSelectbox > div {
-    height: 38px !important;
-    margin-top: 18px !important;
-    font-size: 14px !important;
+    height: 42px !important;
+    margin-top: 20px !important;
 }
-
-#MainMenu, footer, header {
-    visibility: hidden;
-}
+#MainMenu, footer, header { visibility: hidden; }
 a { text-decoration: none; }
 </style>
 """, unsafe_allow_html=True)
