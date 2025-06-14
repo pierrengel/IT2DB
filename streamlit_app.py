@@ -149,18 +149,15 @@ if st.session_state.page == "Dashboard":
 elif st.session_state.page == "Recommendations":
     st.markdown("### 📋 Handlungsempfehlungen")
     st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
-
     col1, col2 = st.columns(2)
 
     if category == "C1":
         with col1:
-            st.markdown("#### 🛠️ 1. Automatisierte Maßnahmen (Dashboard aktiviert Maschinensteuerung)")
+            st.markdown("#### 🛠️ 1. Automatisierte Maßnahmen (Dashboard aktiviert Maschinensteuerung) (Gewächshaus Paprika)")
             st.image("1894ce13-5d96-4ed5-8fe9-36dc65d5705f.png", use_column_width=True)
-
         with col2:
-            st.markdown("#### 🧑‍🌾 2. Manuelle Anweisungen für den Landwirt (Bestätigung nötig)")
+            st.markdown("#### 🧑‍🌾 2. Manuelle Anweisungen für den Landwirt (Bestätigung nötig) (Gewächshaus Paprika)")
             st.image("2a9df594-1ba8-4562-a869-624ec7905cde.png", use_column_width=True)
-
     else:
         with col1:
             st.info("Keine automatisierten Maßnahmen für Karotten verfügbar.")
