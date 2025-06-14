@@ -1,6 +1,3 @@
-from pathlib import Path
-
-code = '''
 import streamlit as st
 
 # ---- Page Setup ----
@@ -11,7 +8,7 @@ if "page" not in st.session_state:
     st.session_state.page = "Dashboard"
 
 # ---- Custom CSS Styling ----
-st.markdown(\"""
+st.markdown("""
 <style>
 body {
     background-color: white;
@@ -49,13 +46,12 @@ button[kind="secondary"]:hover {
 }
 a { text-decoration: none; }
 </style>
-\""", unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # ---- Header Layout with Logo, Dropdown, and Button ----
 col1, col2, col3, col4 = st.columns([2, 5, 1, 1])
 
 with col1:
-    # Logo as dashboard button
     if st.button("", key="logo_click"):
         st.session_state.page = "Dashboard"
     st.image("LOGOBODO.jpg", width=140)
@@ -81,14 +77,14 @@ if st.session_state.page == "Dashboard":
 
     if category == "C1":
         klima_data = [
-            ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
-            ("Luftfeuchtigkeit", "81 %", "60–80 %", "🟠 Grenzwertig"),
+            ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
+            ("Luftfeuchtigkeit", "81 %", "60–80 %", "🟠 Grenzwertig"),
             ("CO₂-Konzentration", "1001 ppm", "600–1000 ppm", "🟠 Grenzwertig"),
             ("Lichtintensität", "225 µmol/m²/s", "150–300 µmol/m²/s", "🟢 OK"),
-            ("Blatt-Temperatur", "27 °C", "18–26 °C", "🔴 Zu hoch")
+            ("Blatt-Temperatur", "27 °C", "18–26 °C", "🔴 Zu hoch")
         ]
         boden_data = [
-            ("Bodenfeuchte", "41 %", "25–40 %", "🟠 Leicht erhöht"),
+            ("Bodenfeuchte", "41 %", "25–40 %", "🟠 Leicht erhöht"),
             ("EC-Wert (Düngesalze)", "3.0 mS/cm", "1.0–2.0 mS/cm", "🔴 Deutlich zu hoch"),
             ("pH-Wert (Wasser)", "7.5", "5.8–6.5", "🔴 Zu basisch")
         ]
@@ -98,14 +94,14 @@ if st.session_state.page == "Dashboard":
 
     elif category == "C2":
         klima_data = [
-            ("Temperatur (Luft)", "21.0 °C", "18–24 °C", "🟢 OK"),
-            ("Luftfeuchtigkeit", "70.0 %", "60–80 %", "🟢 OK"),
+            ("Temperatur (Luft)", "21.0 °C", "18–24 °C", "🟢 OK"),
+            ("Luftfeuchtigkeit", "70.0 %", "60–80 %", "🟢 OK"),
             ("CO₂-Konzentration", "800.0 ppm", "600–1000 ppm", "🟢 OK"),
             ("Lichtintensität", "225.0 µmol/m²/s", "150–300 µmol/m²/s", "🟢 OK"),
-            ("Blatt-Temperatur", "22.0 °C", "18–26 °C", "🟢 OK")
+            ("Blatt-Temperatur", "22.0 °C", "18–26 °C", "🟢 OK")
         ]
         boden_data = [
-            ("Bodenfeuchte", "32.5 %", "25–40 %", "🟢 OK"),
+            ("Bodenfeuchte", "32.5 %", "25–40 %", "🟢 OK"),
             ("EC-Wert (Düngesalze)", "1.5 mS/cm", "1.0–2.0 mS/cm", "🟢 OK"),
             ("pH-Wert (Wasser)", "6.15", "5.8–6.5", "🟢 OK")
         ]
@@ -157,15 +153,11 @@ elif st.session_state.page == "Recommendations":
     st.markdown("### 📋 Handlungsempfehlungen")
     st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
 
+    # Always show two columns with headers only
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("#### ⚙️ Automatisierte Maßnahmen")
+        st.markdown("#### 👨‍🌾 Manuelle Anweisungen (Manuell)")
 
     with col2:
-        st.markdown("#### 👨‍🌾 Manuelle Anweisungen für den Landwirt")
-'''
-
-code_file = Path("/mnt/data/streamlit_dashboard.py")
-code_file.write_text(code)
-code_file
+        st.markdown("#### ⚙️ Automatisierte Maßnahmen (Auto)")
