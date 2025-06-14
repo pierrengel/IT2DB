@@ -17,7 +17,7 @@ st.markdown("""
 st.markdown("""
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
     <div style="display: flex; align-items: center; gap: 1rem;">
-        <img src="048a54e7-9b34-4bed-b931-9c4fd1edabeb.png" alt="BODO Logo" style="height: 100px;">
+        <img src="LOGOBODO.jpg" alt="BODO Logo" style="height: 100px;">
         <h1 style="margin: 0;">BODO</h1>
     </div>
     <div style="width: 150px;">
@@ -40,7 +40,7 @@ col1, col2, col3 = st.columns(3)
 # --- 1. Klimaüberwachung ---  #
 # ----------------------------- #
 with col1:
-    st.image("KLimaüberwachung.jpg", width=100)
+    st.image("KLimaüberwachung.jpg", width=120)
     st.markdown("**Gewächshaus Paprika**")
 
     klima_data = [
@@ -65,7 +65,7 @@ with col1:
 # --- 2. Pflanzen- & Bodenüberwachung ---     #
 # ------------------------------------------- #
 with col2:
-    st.image("Pflanzenüberwachung.jpg", width=100)
+    st.image("Pflanzenüberwachung.jpg", width=120)
     st.markdown("**Gewächshaus Paprika**")
 
     boden_data = [
@@ -88,7 +88,7 @@ with col2:
 # --- 3. Wassermanagement & Sicherheit ---   #
 # ------------------------------------------ #
 with col3:
-    st.image("Wassermanagement.jpg", width=100)
+    st.image("Wassermanagement.jpg", width=120)
     st.markdown("**Gewächshaus Paprika**")
 
     wasser_data = [
