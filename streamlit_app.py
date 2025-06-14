@@ -3,53 +3,56 @@ import streamlit as st
 # ---- Page Setup ----
 st.set_page_config(layout="wide")
 
-# ---- Hide Streamlit UI Elements ----
+# ---- Custom CSS ----
 custom_css = """
-    <style>
-    #MainMenu, footer, header {
-        visibility: hidden;
-    }
+<style>
+#MainMenu, footer, header {
+    visibility: hidden;
+}
 
-    /* Layout: logo left, title next to it */
-    .header-bar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 2rem;
-    }
+/* Top bar layout */
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
 
-    .logo-title {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
+/* Logo and BODO title */
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.logo-title img {
+    height: 80px;
+}
 
-    .logo-title img {
-        height: 80px;
-    }
-
-    .small-selectbox select {
-        font-size: 0.85rem;
-        padding: 0.3rem 0.5rem;
-    }
-    </style>
+/* Small dropdown */
+.small-dropdown select {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.5rem;
+    width: 150px;
+}
+</style>
 """
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# ---- Top Header Bar Layout ----
+# ---- Layout HTML ----
 st.markdown("""
-    <div class="header-bar">
-        <div class="logo-title">
-            <img src="ea9acaba-566c-48e5-8554-b5bdbd5461db.png" alt="Logo">
-            <h1>BODO</h1>
-        </div>
-        <div class="small-selectbox">
+<div class="header-bar">
+    <div class="logo-title">
+        <img src="e686fd0a-024f-4539-96fa-dc9dd2dcb47f.png" alt="Logo">
+        <h1>BODO</h1>
+    </div>
+    <div class="small-dropdown">
 """, unsafe_allow_html=True)
 
-# Toggle in top-right
-st.selectbox("Category", ["C1", "C2", "C3"], key="main")
+# ---- Dropdown aligned right, small size ----
+st.selectbox(" ", ["C1", "C2", "C3"], key="main", label_visibility="collapsed")
 
+# ---- Close the divs ----
 st.markdown("</div></div>", unsafe_allow_html=True)
 
-# ---- Main Area (Empty for now) ----
+# ---- Main Content Placeholder ----
 st.empty()
