@@ -104,7 +104,7 @@ if st.session_state.page == "Dashboard":
 
     # Left column: Wassermanagement & Sicherheit
     with col1:
-        st.markdown("### Wassermanagement & Sicherheit")
+        st.markdown("### Wassermanagement")
         for p, i, s, stt in wasser_data:
             st.markdown(f"""
             <div class='card'>
