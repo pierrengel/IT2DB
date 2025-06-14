@@ -64,7 +64,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---- Category Selector ----
-category = st.selectbox(" ", ["Paprika", "Karotten"], label_visibility="collapsed", key="main_category")
+category_map = {
+    "Paprika": "C1",
+    "Karotten": "C2"
+}
+selection = st.selectbox(" ", list(category_map.keys()), label_visibility="collapsed", key="main_category")
+category = category_map[selection]
 
 # ---- Close the Top Bar ----
 st.markdown("</div></div>", unsafe_allow_html=True)
@@ -80,11 +85,6 @@ content = {
         "Hihi": {"desc": "Different data for C2 Hihi", "data": np.random.randn(40)},
         "Haha": {"desc": "C2 Haha content here", "data": np.random.randn(90)},
         "Huhu": {"desc": "All about C2 Huhu", "data": np.random.randn(60)},
-    },
-    "C3": {
-        "Hihi": {"desc": "Wow C3 Hihi is here", "data": np.random.randn(80)},
-        "Haha": {"desc": "C3 Haha got a new thing", "data": np.random.randn(110)},
-        "Huhu": {"desc": "And here's C3 Huhu's best bit", "data": np.random.randn(95)},
     }
 }
 
