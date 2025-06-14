@@ -3,64 +3,73 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Page setup
+# ---- Page Setup ----
 st.set_page_config(layout="wide")
 
-# Custom CSS
+# ---- Custom CSS Styling ----
 st.markdown("""
 <style>
 #MainMenu, footer, header {
     visibility: hidden;
 }
+
 .header-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
 }
+
 .logo-title {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
+
 .logo-title img {
     height: 80px;
 }
+
 .dropdown-container {
     display: flex;
     align-items: center;
 }
+
 .dropdown-container > div {
     width: 120px !important;
     margin-top: 0 !important;
 }
+
 .card-header {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin-bottom: 0.5rem;
 }
+
 .card-header img {
     height: 30px;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# Top bar layout
+# ---- Top Header Bar ----
 st.markdown("""
 <div class="header-bar">
     <div class="logo-title">
-        <img src="35beea88-4e55-4293-81fd-a79450eed37e.png" alt="Logo">
+        <img src="LOGOBODO.jpg" alt="BODO Logo">
         <h1>BODO</h1>
     </div>
     <div class="dropdown-container">
 """, unsafe_allow_html=True)
 
-# Toggle to select category
+# ---- Category Selector ----
 category = st.selectbox(" ", ["C1", "C2", "C3"], label_visibility="collapsed", key="main_category")
+
+# ---- Close the Top Bar ----
 st.markdown("</div></div>", unsafe_allow_html=True)
 
-# Sample content data (can be expanded or pulled from another file later)
+# ---- Dynamic Content Data ----
 content = {
     "C1": {
         "Hihi": {"desc": "Random stuff for Hihi under C1", "data": np.random.randn(50)},
@@ -79,25 +88,27 @@ content = {
     }
 }
 
-# Get current category content
-selected_content = content[category]
+# ---- Local logo paths for each card ----
+logo_paths = {
+    "Hihi": "hihi_logo.png",   # Replace with actual filenames
+    "Haha": "haha_logo.png",
+    "Huhu": "huhu_logo.png"
+}
 
-# Layout: 3 columns
+# ---- Main Card Layout ----
 col1, col2, col3 = st.columns(3)
-
 for col, name in zip([col1, col2, col3], ["Hihi", "Haha", "Huhu"]):
     with col:
         st.markdown(f"""
         <div class="card-header">
-            <img src="https://via.placeholder.com/30" alt="icon">
+            <img src="{logo_paths[name]}" alt="{name} Logo">
             <h3>{name}</h3>
         </div>
         """, unsafe_allow_html=True)
 
-        st.write(selected_content[name]["desc"])
+        st.write(content[category][name]["desc"])
 
-        # Histogram plot
         fig, ax = plt.subplots()
-        ax.hist(selected_content[name]["data"], bins=20, color="#69b3a2", edgecolor="black")
+        ax.hist(content[category][name]["data"], bins=20, color="#69b3a2", edgecolor="black")
         ax.set_title(f"{name} Histogram")
         st.pyplot(fig)
