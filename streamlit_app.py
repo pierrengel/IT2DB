@@ -151,7 +151,7 @@ elif st.session_state.page == "Recommendations":
 
     # --- Automatisierte Maßnahmen (Auto) ---
     with colA:
-        st.markdown("#### ⚙️ Automatisierte Maßnahmen (Auto)")
+        st.markdown("#### ⚙️ Vom System erledigt")
         if category == "C1":
             st.markdown("""
 🔴 Die Grenzwerte der Wasserqualität wurden überschritten (5 NTU statt max. 2 NTU). Die Bewässerung wurde deshalb automatisch gestoppt.  
@@ -181,7 +181,7 @@ elif st.session_state.page == "Recommendations":
 
     # --- Manuelle Anweisungen (Manuell) ---
     with colB:
-        st.markdown("#### 👨‍🌾 Manuelle Anweisungen (Manuell)")
+        st.markdown("#### 👨‍🌾 Handlungsempfehlungen")
         if category == "C1":
             st.markdown("""
 🔴 🧪 **Wassertank prüfen und ggf. reinigen**  
