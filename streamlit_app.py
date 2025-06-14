@@ -1,8 +1,4 @@
-from pathlib import Path
-
-# Show the final integrated code as requested
-code_file = Path("/mnt/data/final_dashboard_app.py")
-code = '''import streamlit as st
+import streamlit as st
 
 # ---- Page Setup ----
 st.set_page_config(layout="wide")
@@ -12,7 +8,7 @@ if "page" not in st.session_state:
     st.session_state.page = "Dashboard"
 
 # ---- Custom CSS Styling ----
-st.markdown(\"""
+st.markdown("""
 <style>
 body {
     background-color: white;
@@ -50,12 +46,13 @@ button[kind="secondary"]:hover {
 }
 a { text-decoration: none; }
 </style>
-\""", unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # ---- Header Layout with Logo, Dropdown, and Button ----
 col1, col2, col3, col4 = st.columns([2, 5, 1, 1])
 
 with col1:
+    # Logo as dashboard button
     if st.button("", key="logo_click"):
         st.session_state.page = "Dashboard"
     st.image("LOGOBODO.jpg", width=140)
@@ -113,6 +110,7 @@ if st.session_state.page == "Dashboard":
             ("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")
         ]
 
+    # --- Column 1: Klimaüberwachung ---
     with col1:
         st.image("KLimaüberwachung.jpg", width=120)
         for param, ist, soll, status in klima_data:
@@ -125,6 +123,7 @@ if st.session_state.page == "Dashboard":
             </div>
             """, unsafe_allow_html=True)
 
+    # --- Column 2: Bodenüberwachung ---
     with col2:
         st.image("Pflanzenüberwachung.jpg", width=120)
         for param, ist, soll, status in boden_data:
@@ -137,6 +136,7 @@ if st.session_state.page == "Dashboard":
             </div>
             """, unsafe_allow_html=True)
 
+    # --- Column 3: Wassermanagement ---
     with col3:
         st.image("Wassermanagement.jpg", width=120)
         for param, ist, soll, status in wasser_data:
@@ -153,12 +153,4 @@ if st.session_state.page == "Dashboard":
 elif st.session_state.page == "Recommendations":
     st.markdown("### 📋 Handlungsempfehlungen")
     st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("#### 🛠️ Automatisierte Maßnahmen")
-    with col2:
-        st.markdown("#### 🧑‍🌾 Manuelle Anweisungen für den Landwirt")
-'''
-
-code_file.write_text(code)
-code_file
+    st.info("Diese Seite ist derzeit leer – zukünftige Empfehlungen erscheinen hier automatisch.")
