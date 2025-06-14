@@ -52,7 +52,6 @@ a { text-decoration: none; }
 col1, col2, col3, col4 = st.columns([2, 5, 1, 1])
 
 with col1:
-    # Logo as dashboard button
     if st.button("", key="logo_click"):
         st.session_state.page = "Dashboard"
     st.image("LOGOBODO.jpg", width=140)
@@ -110,7 +109,6 @@ if st.session_state.page == "Dashboard":
             ("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")
         ]
 
-    # --- Column 1: Klimaüberwachung ---
     with col1:
         st.image("KLimaüberwachung.jpg", width=120)
         for param, ist, soll, status in klima_data:
@@ -123,7 +121,6 @@ if st.session_state.page == "Dashboard":
             </div>
             """, unsafe_allow_html=True)
 
-    # --- Column 2: Bodenüberwachung ---
     with col2:
         st.image("Pflanzenüberwachung.jpg", width=120)
         for param, ist, soll, status in boden_data:
@@ -136,7 +133,6 @@ if st.session_state.page == "Dashboard":
             </div>
             """, unsafe_allow_html=True)
 
-    # --- Column 3: Wassermanagement ---
     with col3:
         st.image("Wassermanagement.jpg", width=120)
         for param, ist, soll, status in wasser_data:
@@ -153,4 +149,20 @@ if st.session_state.page == "Dashboard":
 elif st.session_state.page == "Recommendations":
     st.markdown("### 📋 Handlungsempfehlungen")
     st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
-    st.info("Diese Seite ist derzeit leer – zukünftige Empfehlungen erscheinen hier automatisch.")
+
+    col1, col2 = st.columns(2)
+
+    if category == "C1":
+        with col1:
+            st.markdown("#### 🛠️ 1. Automatisierte Maßnahmen (Dashboard aktiviert Maschinensteuerung)")
+            st.image("1894ce13-5d96-4ed5-8fe9-36dc65d5705f.png", use_column_width=True)
+
+        with col2:
+            st.markdown("#### 🧑‍🌾 2. Manuelle Anweisungen für den Landwirt (Bestätigung nötig)")
+            st.image("2a9df594-1ba8-4562-a869-624ec7905cde.png", use_column_width=True)
+
+    else:
+        with col1:
+            st.info("Keine automatisierten Maßnahmen für Karotten verfügbar.")
+        with col2:
+            st.info("Keine manuellen Anweisungen für Karotten verfügbar.")
