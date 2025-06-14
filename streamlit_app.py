@@ -146,4 +146,11 @@ if st.session_state.page == "Dashboard":
                 Ist-Wert: <span>{ist}</span><br>
                 Sollbereich: <span style='color:#555;'>{soll}</span><br>
                 Status: <span style='font-weight:bold;'>{status}</span>
-            </di
+            </div>
+            """, unsafe_allow_html=True)
+
+# ---- PAGE 2: Handlungsempfehlungen ----
+elif st.session_state.page == "Recommendations":
+    st.markdown("### 📋 Handlungsempfehlungen")
+    st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
+    st.info("Diese Seite ist derzeit leer – zukünftige Empfehlungen erscheinen hier automatisch.")
