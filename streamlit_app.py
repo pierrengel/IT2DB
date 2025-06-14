@@ -7,6 +7,26 @@ st.set_page_config(layout="wide")
 # ---- Custom CSS Styling ----
 st.markdown("""
 <style>
+body {
+    background-color: white;
+    color: #111;
+}
+[data-testid="stAppViewContainer"] {
+    background-color: white;
+    color: #111;
+}
+[data-testid="stMarkdownContainer"] {
+    color: #111;
+}
+div.block-container {
+    padding-top: 2rem;
+}
+.card {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
 #MainMenu, footer, header {
     visibility: hidden;
 }
@@ -50,10 +70,10 @@ with col1:
 
     for param, ist, soll, status in klima_data:
         st.markdown(f"""
-        <div style='margin-bottom: 1rem; padding: 0.5rem; background-color: #1e1e1e; border-radius: 8px;'>
+        <div class='card'>
             <strong>{param}</strong><br>
-            Ist-Wert: <span style='color:#fff;'>{ist}</span><br>
-            Sollbereich: <span style='color:#aaa;'>{soll}</span><br>
+            Ist-Wert: <span>{ist}</span><br>
+            Sollbereich: <span style='color:#555;'>{soll}</span><br>
             Status: <span style='font-weight:bold;'>{status}</span>
         </div>
         """, unsafe_allow_html=True)
@@ -73,10 +93,10 @@ with col2:
 
     for param, ist, soll, status in boden_data:
         st.markdown(f"""
-        <div style='margin-bottom: 1rem; padding: 0.5rem; background-color: #1e1e1e; border-radius: 8px;'>
+        <div class='card'>
             <strong>{param}</strong><br>
-            Ist-Wert: <span style='color:#fff;'>{ist}</span><br>
-            Sollbereich: <span style='color:#aaa;'>{soll}</span><br>
+            Ist-Wert: <span>{ist}</span><br>
+            Sollbereich: <span style='color:#555;'>{soll}</span><br>
             Status: <span style='font-weight:bold;'>{status}</span>
         </div>
         """, unsafe_allow_html=True)
@@ -94,10 +114,10 @@ with col3:
 
     for param, ist, soll, status in wasser_data:
         st.markdown(f"""
-        <div style='margin-bottom: 1rem; padding: 0.5rem; background-color: #1e1e1e; border-radius: 8px;'>
+        <div class='card'>
             <strong>{param}</strong><br>
-            Ist-Wert: <span style='color:#fff;'>{ist}</span><br>
-            Sollbereich: <span style='color:#aaa;'>{soll}</span><br>
+            Ist-Wert: <span>{ist}</span><br>
+            Sollbereich: <span style='color:#555;'>{soll}</span><br>
             Status: <span style='font-weight:bold;'>{status}</span>
         </div>
         """, unsafe_allow_html=True)
