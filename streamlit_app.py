@@ -134,6 +134,7 @@ if st.session_state.page == "Dashboard":
               Status: <span style='font-weight:bold;'>{stt}</span>
             </div>""", unsafe_allow_html=True)
 # ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN (To-Do) ----
+# ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN ----
 elif st.session_state.page == "Recommendations":
     st.markdown("### 📋 Handlungsempfehlungen")
     st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
@@ -144,11 +145,11 @@ elif st.session_state.page == "Recommendations":
         st.markdown("#### ⚙️ Automatisierte Maßnahmen (Auto)")
         if category == "C1":
             st.markdown("""
-- 🔴 Die Grenzwerte der Wasserqualität wurden überschritten (5 NTU statt max. 2 NTU). Die Bewässerung wurde deshalb automatisch gestoppt.  
-- 🔴 Die Luftfeuchtigkeit liegt mit 81 % über dem optimalen Bereich. Die Lüftung wurde automatisch aktiviert.  
-- 🔴 Die Lufttemperatur beträgt 25 °C, die Blatttemperatur liegt zwischen 27 und 29,5 °C. Das Kühlsystem wurde zur Temperatursenkung eingeschaltet.  
-- 🔴 Der CO₂-Wert liegt bei 1001 ppm und damit über dem Grenzwert. Die CO₂-Zufuhr wurde automatisch deaktiviert.  
-- 🔴 Mehrere kritische Werte wurden gleichzeitig festgestellt. Eine Alarmmeldung wurde an den Betreiber gesendet.
+🔴 Die Grenzwerte der Wasserqualität wurden überschritten (5 NTU statt max. 2 NTU). Die Bewässerung wurde deshalb automatisch gestoppt.  
+🔴 Die Luftfeuchtigkeit liegt mit 81 % über dem optimalen Bereich. Die Lüftung wurde automatisch aktiviert.  
+🔴 Die Lufttemperatur beträgt 25 °C, die Blatttemperatur liegt zwischen 27 und 29,5 °C. Das Kühlsystem wurde zur Temperatursenkung eingeschaltet.  
+🔴 Der CO₂-Wert liegt bei 1001 ppm und damit über dem Grenzwert. Die CO₂-Zufuhr wurde automatisch deaktiviert.  
+🔴 Mehrere kritische Werte wurden gleichzeitig festgestellt. Eine Alarmmeldung wurde an den Betreiber gesendet.
 """)
         else:
             st.info("Keine automatischen Maßnahmen für Karotten verfügbar.")
@@ -158,20 +159,26 @@ elif st.session_state.page == "Recommendations":
         st.markdown("#### 👨‍🌾 Manuelle Anweisungen (Manuell)")
         if category == "C1":
             st.markdown("""
-- 🔴 🧪 **Wassertank prüfen und ggf. reinigen**  
-  NTU-Wert stark erhöht – kann auf Algen, Sedimente oder Bakterien im Tank hinweisen.  
-- 🟠 🧴 **Frischwasser oder Filter tauschen**  
-  Wasserqualität außerhalb Toleranz → evtl. Wasserquelle kontaminiert.  
-- 🟠 ⚖️ **Düngergabe unterbrechen/anpassen**  
-  EC-Wert bei 3.0–5.5 mS/cm = Überdüngung möglich → Nährstoffbrand vermeiden.  
-- 🟠 🧫 **Blätter auf Schimmel / Schädlinge prüfen**  
-  Hohe Luftfeuchte + Wärme = optimales Milieu für Pilze.  
-- 🟡 🧯 **Manuelle Schattierung aktivieren**  
-  Licht in Kombination mit hoher Temperatur kann Verbrennungen fördern.  
-- 🟢 🌡️ **Zusätzliche Thermomatten entfernen (falls vorhanden)**  
-  Zu hohe Temperaturen → Verdacht auf interne Wärmequellen.  
-- 🟢 📋 **Daten manuell protokollieren**  
-  Ggf. ergänzen, ob zusätzliche Beobachtungen gemacht wurden (Geruch, Trübung, Geräusche etc.).
+🔴 🧪 **Wassertank prüfen und ggf. reinigen**  
+NTU-Wert stark erhöht – kann auf Algen, Sedimente oder Bakterien im Tank hinweisen.  
+
+🟠 🧴 **Frischwasser oder Filter tauschen**  
+Wasserqualität außerhalb Toleranz → evtl. Wasserquelle kontaminiert.  
+
+🟠 ⚖️ **Düngergabe unterbrechen/anpassen**  
+EC-Wert bei 3.0–5.5 mS/cm = Überdüngung möglich → Nährstoffbrand vermeiden.  
+
+🟠 🧫 **Blätter auf Schimmel / Schädlinge prüfen**  
+Hohe Luftfeuchte + Wärme = optimales Milieu für Pilze.  
+
+🟡 🧯 **Manuelle Schattierung aktivieren**  
+Licht in Kombination mit hoher Temperatur kann Verbrennungen fördern.  
+
+🟢 🌡️ **Zusätzliche Thermomatten entfernen (falls vorhanden)**  
+Zu hohe Temperaturen → Verdacht auf interne Wärmequellen.  
+
+🟢 📋 **Daten manuell protokollieren**  
+Ggf. ergänzen, ob zusätzliche Beobachtungen gemacht wurden (Geruch, Trübung, Geräusche etc.).
 """)
         else:
             st.info("Keine manuellen Anweisungen für Karotten verfügbar.")
