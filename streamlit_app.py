@@ -41,11 +41,12 @@ button[kind="secondary"]:hover {
     height: 42px !important;
     margin-top: 20px !important;
 }
-#MainMenu, footer, header { visibility: hidden; }
+#MainMenu, footer, header {
+    visibility: hidden;
+}
 a { text-decoration: none; }
 </style>
 """, unsafe_allow_html=True)
-
 
 # ---- HEADER: Logo / Spacer / Dropdown / To-Do / Home ----
 col1, col2, col3, col4, col5 = st.columns([2, 4, 1, 1, 1], gap="small")
@@ -54,7 +55,7 @@ with col1:
 with col2:
     st.write("")  # spacer
 with col3:
-    category_map = {"Paprika": "C1", "Karotten": "C2"}
+    category_map = {"Paprika": "C1", "Gurke": "C2"}
     choice = st.selectbox("", list(category_map.keys()), label_visibility="collapsed")
     category = category_map[choice]
 with col4:
@@ -104,7 +105,7 @@ if st.session_state.page == "Dashboard":
 
     # Left column: Wassermanagement & Sicherheit
     with col1:
-        st.markdown("### Wassermanagement")
+        st.markdown("### Wassermanagement & Sicherheit")
         for p, i, s, stt in wasser_data:
             st.markdown(f"""
             <div class='card'>
@@ -155,19 +156,19 @@ elif st.session_state.page == "Recommendations":
             st.markdown("""
 🔴 Die Grenzwerte der Wasserqualität wurden überschritten (5 NTU statt max. 2 NTU). Die Bewässerung wurde deshalb automatisch gestoppt.  
 
-🔴 Die Luftfeuchtigkeit liegt mit 81 % über dem optimalen Bereich. Die Lüftung wurde automatisch aktiviert.  
+🔴 Die Luftfeuchtigkeit liegt mit 81 % über dem optimalen Bereich. Die Lüftung wurde automatisch aktiviert. 
 
-🔴 Die Lufttemperatur beträgt 25 °C, die Blatttemperatur liegt zwischen 27 und 29,5 °C. Das Kühlsystem wurde zur Temperatursenkung eingeschaltet. 
+🔴 Die Lufttemperatur beträgt 25 °C, die Blatttemperatur liegt zwischen 27 und 29,5 °C. Das Kühlsystem wurde zur Temperatursenkung eingeschaltet.
 
-🔴 Der CO₂-Wert liegt bei 1001 ppm und damit über dem Grenzwert. Die CO₂-Zufuhr wurde automatisch deaktiviert.  
+🔴 Der CO₂-Wert liegt bei 1001 ppm und damit über dem Grenzwert. Die CO₂-Zufuhr wurde automatisch deaktiviert. 
 
 🔴 Mehrere kritische Werte wurden gleichzeitig festgestellt. Eine Alarmmeldung wurde an den Betreiber gesendet.
 """)
-        elif category == "C2":
+        else:
             st.markdown("""
-🟢 Die Bodenfeuchtigkeit liegt mit 32,5 % im optimalen Bereich. Die Bewässerung wurde erfolgreich abgeschlossen. 
+🟢 Die Bodenfeuchtigkeit liegt mit 32,5 % im optimalen Bereich. Die Bewässerung wurde erfolgreich abgeschlossen.  
 
-🟢 Die Luftfeuchtigkeit beträgt 70 % und liegt im Zielbereich. Die Lüftung läuft im Standardbetrieb. 
+🟢 Die Luftfeuchtigkeit beträgt 70 % und liegt im Zielbereich. Die Lüftung läuft im Standardbetrieb.  
 
 🟢 Die Temperaturregelung ist stabil. Lufttemperatur (21 °C) und Blatttemperatur (22 °C) sind optimal.
 
@@ -175,8 +176,6 @@ elif st.session_state.page == "Recommendations":
 
 🟢 Es wurden keine kritischen Abweichungen festgestellt. Systemstatus: stabil.
 """)
-        else:
-            st.info("Keine automatisierten Maßnahmen verfügbar.")
 
     # --- Manuelle Anweisungen (Manuell) ---
     with colB:
@@ -204,7 +203,7 @@ Zu hohe Temperaturen → Verdacht auf interne Wärmequellen.
 🟢 📋 **Daten manuell protokollieren**  
 Ggf. ergänzen, ob zusätzliche Beobachtungen gemacht wurden (Geruch, Trübung, Geräusche etc.).
 """)
-        elif category == "C2":
+        else:
             st.markdown("""
 🟢 🔍 **Routinekontrolle Wassertank**  
 Wasserqualität gut (1.0 NTU), aber regelmäßige Sichtprüfung empfehlenswert.
@@ -221,6 +220,7 @@ Keine Auffälligkeiten, aber regelmäßige Kontrolle auf Blattveränderungen sin
 🟢 🪴 **Testweise Blattproben für Labor (optional)**  
 Zur Optimierung der Nährstoffstrategie bei empfindlicher Sorte.
 """)
+
         else:
             st.info("Keine manuellen Anweisungen verfügbar.")
 
