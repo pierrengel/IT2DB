@@ -55,7 +55,7 @@ with col1:
 with col2:
     st.write("")  # spacer
 with col3:
-    category_map = {"--Auswahl--": "C1", "Gurke": "C2", "Paprika": "C3"}
+    category_map = {"Auswahl": "C1", "Gurke": "C2", "Paprika": "C3"}
     choice = st.selectbox("", list(category_map.keys()), label_visibility="collapsed")
     category = category_map[choice]
 with col4:
@@ -113,7 +113,7 @@ if st.session_state.page == "Dashboard":
 
     # Linke Spalte: Wassermanagement & Sicherheit
     with c1:
-        st.markdown("### Wassermanagement & Sicherheit")
+        st.markdown("### Wassermanagement")
         for p, i, s, stt in wasser_data:
             st.markdown(f"""
             <div class='card'>
@@ -126,7 +126,7 @@ if st.session_state.page == "Dashboard":
 
     # Mittlere Spalte: Pflanzen- & Bodenüberwachung
     with c2:
-        st.markdown("### Pflanzen- & Bodenüberwachung")
+        st.markdown("### Produktüberwachung")
         for p, i, s, stt in boden_data:
             st.markdown(f"""
             <div class='card'>
