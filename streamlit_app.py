@@ -55,7 +55,7 @@ with col1:
 with col2:
     st.write("")  # spacer
 with col3:
-    category_map = {"Paprika": "C1", "Gurke": "C2"}
+    category_map = {"--Auswahl--":"C1", "Paprika": "C3", "Gurke": "C2"}
     choice = st.selectbox("", list(category_map.keys()), label_visibility="collapsed")
     category = category_map[choice]
 with col4:
@@ -70,7 +70,7 @@ if st.session_state.page == "Dashboard":
     col1, col2, col3 = st.columns(3)
 
     # prepare the three data sets
-    if category == "C1":
+    if category == "C3":
         klima_data = [
             ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
             ("Luftfeuchtigkeit", "81 %", "60–80 %", "🟠 Grenzwertig"),
@@ -86,7 +86,7 @@ if st.session_state.page == "Dashboard":
         wasser_data = [
             ("Wasserqualität (NTU)", "5.0 NTU", "0–2 NTU", "🔴 Kritisch – Wasser evtl. gekippt")
         ]
-    else:
+    elif category == "C2":
         klima_data = [
             ("Temperatur (Luft)", "21.0 °C", "18–24 °C", "🟢 OK"),
             ("Luftfeuchtigkeit", "70.0 %", "60–80 %", "🟢 OK"),
@@ -101,6 +101,17 @@ if st.session_state.page == "Dashboard":
         ]
         wasser_data = [
             ("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")
+        ]
+
+    else:
+        klima_data = [
+            ("Hier werden Ihre Sensorbasierten Klimadaten angezeigt. Ist-Werte, als auch Soll-Werte und eine Bewertung des Status Quo sind hier ersichtlich"),
+        ]
+        boden_data = [
+            ("Hier werden Ihre Sensorbasierten Produktdaten angezeigt. Ist-Werte, als auch Soll-Werte und eine Bewertung des Status Quo sind hier ersichtlich"),
+        ]
+        wasser_data = [
+            ("Hier werden Ihre Sensorbasierten Wasserdaten angezeigt. Ist-Werte, als auch Soll-Werte und eine Bewertung des Status Quo sind hier ersichtlich")
         ]
 
     # Left column: Wassermanagement & Sicherheit
