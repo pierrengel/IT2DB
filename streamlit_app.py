@@ -71,40 +71,40 @@ if st.session_state.page == "Dashboard":
     c1, c2, c3 = st.columns(3)
 
     # Daten vorbereiten
-    if category == "C3":
+   if category == "C3":
         # Paprika
         klima_data = [
-            "Temperatur (Luft): 25 °C (Soll 18–24 °C) 🔴 Zu hoch",
-            "Luftfeuchtigkeit: 81 % (Soll 60–80 %) 🟠 Grenzwertig",
-            "CO₂-Konzentration: 1001 ppm (Soll 600–1000 ppm) 🟠 Grenzwertig",
-            "Lichtintensität: 225 µmol/m²/s (Soll 150–300) 🟢 OK",
-            "Blatt-Temperatur: 27 °C (Soll 18–26 °C) 🔴 Zu hoch"
+            ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
+            ("Luftfeuchtigkeit", "81 %", "60–80 %", "🟠 Grenzwertig"),
+            ("CO₂-Konzentration", "1001 ppm", "600–1000 ppm", "🟠 Grenzwertig"),
+            ("Lichtintensität", "225 µmol/m²/s", "150–300 µmol/m²/s", "🟢 OK"),
+            ("Blatt-Temperatur", "27 °C", "18–26 °C", "🔴 Zu hoch")
         ]
         boden_data = [
-            "Bodenfeuchte: 41 % (Soll 25–40 %) 🟠 Leicht erhöht",
-            "EC-Wert (Düngesalze): 3.0 mS/cm (Soll 1.0–2.0) 🔴 Deutlich zu hoch",
-            "pH-Wert (Wasser): 7.5 (Soll 5.8–6.5) 🔴 Zu basisch"
+            ("Bodenfeuchte", "41 %", "25–40 %", "🟠 Leicht erhöht"),
+            ("EC-Wert (Düngesalze)", "3.0 mS/cm", "1.0–2.0 mS/cm", "🔴 Deutlich zu hoch"),
+            ("pH-Wert (Wasser)", "7.5", "5.8–6.5", "🔴 Zu basisch")
         ]
         wasser_data = [
-            "Wasserqualität (NTU): 5.0 (Soll 0–2) 🔴 Kritisch – Wasser evtl. gekippt"
+            ("Wasserqualität (NTU)", "5.0 NTU", "0–2 NTU", "🔴 Kritisch – Wasser evtl. gekippt")
         ]
     elif category == "C2":
         # Gurke
         klima_data = [
-            "Temperatur (Luft): 21.0 °C (Soll 18–24 °C) 🟢 OK",
-            "Luftfeuchtigkeit: 70 % (Soll 60–80 %) 🟢 OK",
-            "CO₂-Konzentration: 800 ppm (Soll 600–1000 ppm) 🟢 OK",
-            "Lichtintensität: 225 µmol/m²/s (Soll 150–300) 🟢 OK",
-            "Blatt-Temperatur: 22 °C (Soll 18–26 °C) 🟢 OK"
+            ("Temperatur (Luft)", "21.0 °C", "18–24 °C", "🟢 OK"),
+            ("Luftfeuchtigkeit", "70.0 %", "60–80 %", "🟢 OK"),
+            ("CO₂-Konzentration", "800 ppm", "600–1000 ppm", "🟢 OK"),
+            ("Lichtintensität", "225 µmol/m²/s", "150–300 µmol/m²/s", "🟢 OK"),
+            ("Blatt-Temperatur", "22.0 °C", "18–26 °C", "🟢 OK")
         ]
         boden_data = [
-            "Bodenfeuchte: 32.5 % (Soll 25–40 %) 🟢 OK",
-            "EC-Wert (Düngesalze): 1.5 mS/cm (Soll 1.0–2.0) 🟢 OK",
-            "pH-Wert (Wasser): 6.15 (Soll 5.8–6.5) 🟢 OK"
+            ("Bodenfeuchte", "32.5 %", "25–40 %", "🟢 OK"),
+            ("EC-Wert (Düngesalze)", "1.5 mS/cm", "1.0–2.0 mS/cm", "🟢 OK"),
+            ("pH-Wert (Wasser)", "6.15", "5.8–6.5", "🟢 OK")
         ]
         wasser_data = [
-            "Wasserqualität (NTU): 1.0 (Soll 0–2) 🟢 OK"
-        ]
+            ("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")
+        ]s
     else:
         # Auswahl (C0)
         klima_data = ["Hier werden Ihre klimabezogenen Sensor-Daten angezeigt."]
