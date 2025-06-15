@@ -31,6 +31,10 @@ button[kind="secondary"], div[data-baseweb="select"] {
     border-radius: 8px !important;
     height: 42px !important;
 }
+/* Neue Regel: verkleinert nur die Schrift in Streamlit-Buttons */
+button[kind="secondary"], .stButton > button {
+    font-size: 0.8rem !important;
+}
 button[kind="secondary"]:hover {
     background-color: #0f3e3a !important;
 }
@@ -49,7 +53,6 @@ a { text-decoration: none; }
 </style>
 """, unsafe_allow_html=True)
 
-# ---- HEADER: Logo / Spacer / Dropdown / To-Do / Home ----
 # ---- HEADER: Logo / Spacer / Dropdown / To-Do+Home in einer Spalte ----
 col1, col2, col3, col4 = st.columns([2, 4, 1, 1], gap="small")
 
