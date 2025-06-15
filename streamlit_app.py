@@ -55,7 +55,8 @@ with col1:
 with col2:
     st.write("")  # spacer
 with col3:
-    category_map = {"Auswahl": "C1", "Gurke": "C2", "Paprika": "C3"}
+    # Auswahl → C0, Gurke → C2, Paprika → C3
+    category_map = {"Auswahl": "C0", "Gurke": "C2", "Paprika": "C3"}
     choice = st.selectbox("", list(category_map.keys()), label_visibility="collapsed")
     category = category_map[choice]
 with col4:
@@ -65,11 +66,12 @@ with col5:
     if st.button("Home"):
         st.session_state.page = "Dashboard"
 
+
 # ---- PAGE 1: DASHBOARD ----
 if st.session_state.page == "Dashboard":
     c1, c2, c3 = st.columns(3)
 
-    # Daten vorbereiten
+    # --- Daten je Kategorie ---
     if category == "C3":
         # Paprika
         klima_data = [
@@ -87,6 +89,7 @@ if st.session_state.page == "Dashboard":
         wasser_data = [
             ("Wasserqualität (NTU)", "5.0 NTU", "0–2 NTU", "🔴 Kritisch – Wasser evtl. gekippt")
         ]
+
     elif category == "C2":
         # Gurke
         klima_data = [
@@ -104,51 +107,46 @@ if st.session_state.page == "Dashboard":
         wasser_data = [
             ("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")
         ]
+
     else:
-        # --Auswahl--
-        st.info("Bitte wählen Sie eine Kategorie aus, um Daten anzuzeigen.")
-        klima_data = [ ("Hier werden Ihre Sensorbasierten Klimadaten angezeigt. Ist-Werte, als auch Soll-Werte und eine Bewertung des Status Quo sind hier ersichtlich")]
-        boden_data = [ ("Hier werden Ihre Sensorbasierten Produktdaten angezeigt. Ist-Werte, als auch Soll-Werte und eine Bewertung des Status Quo sind hier ersichtlich")]
-        wasser_data = [ ("Hier werden Ihre Sensorbasierten Wasserdaten angezeigt. Ist-Werte, als auch Soll-Werte und eine Bewertung des Status Quo sind hier ersichtlich")]
+        # Auswahl (C0) → nur Platzhalter-Texte
+        klima_data = [("Hier werden Ihre klimabezogenen Sensor-Daten angezeigt.")]  # nur 1-Tupel
+        boden_data = [("Hier werden Ihre bodenbezogenen Sensor-Daten angezeigt.")]  # nur 1-Tupel
+        wasser_data = [("Hier werden Ihre wasserbezogenen Sensor-Daten angezeigt.")]  # nur 1-Tupel
 
-    # Linke Spalte: Wassermanagement & Sicherheit
+    # --- Linke Spalte: Wassermanagement & Sicherheit ---
     with c1:
-        st.markdown("### Wassermanagement")
-        for p, i, s, stt in wasser_data:
+        st.markdown("### Wassermanagement & Sicherheit")
+        for item in wasser_data:
+            text = item[0]  # nur einen Wert
             st.markdown(f"""
-            <div class='card'>
-              <strong>{p}</strong><br>
-              Ist-Wert: {i}<br>
-              Sollbereich: <span style='color:#555;'>{s}</span><br>
-              Status: <span style='font-weight:bold;'>{stt}</span>
+            <div class='card' style='font-size:0.9rem;'>
+              {text}
             </div>
             """, unsafe_allow_html=True)
 
-    # Mittlere Spalte: Pflanzen- & Bodenüberwachung
+    # --- Mittlere Spalte: Pflanzen- & Bodenüberwachung ---
     with c2:
-        st.markdown("### Produktüberwachung")
-        for p, i, s, stt in boden_data:
+        st.markdown("### Pflanzen- & Bodenüberwachung")
+        for item in boden_data:
+            text = item[0]
             st.markdown(f"""
-            <div class='card'>
-              <strong>{p}</strong><br>
-              Ist-Wert: {i}<br>
-              Sollbereich: <span style='color:#555;'>{s}</span><br>
-              Status: <span style='font-weight:bold;'>{stt}</span>
+            <div class='card' style='font-size:0.9rem;'>
+              {text}
             </div>
             """, unsafe_allow_html=True)
 
-    # Rechte Spalte: Klimaüberwachung
+    # --- Rechte Spalte: Klimaüberwachung ---
     with c3:
         st.markdown("### Klimaüberwachung")
-        for p, i, s, stt in klima_data:
+        for item in klima_data:
+            text = item[0]
             st.markdown(f"""
-            <div class='card'>
-              <strong>{p}</strong><br>
-              Ist-Wert: {i}<br>
-              Sollbereich: <span style='color:#555;'>{s}</span><br>
-              Status: <span style='font-weight:bold;'>{stt}</span>
+            <div class='card' style='font-size:0.9rem;'>
+              {text}
             </div>
             """, unsafe_allow_html=True)
+
 
 # ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN (To-Do) ----
 elif st.session_state.page == "Recommendations":
@@ -157,7 +155,7 @@ elif st.session_state.page == "Recommendations":
 
     colA, colB = st.columns(2, gap="large")
 
-    # Vom System erledigt
+    # --- Spalte A: Vom System erledigt ---
     with colA:
         st.markdown("#### Vom System erledigt")
         if category == "C3":
@@ -179,7 +177,7 @@ elif st.session_state.page == "Recommendations":
         else:
             st.info("Keine automatisierten Maßnahmen verfügbar.")
 
-    # Handlungsempfehlungen
+    # --- Spalte B: Handlungsempfehlungen ---
     with colB:
         st.markdown("#### Handlungsempfehlungen")
         if category == "C3":
