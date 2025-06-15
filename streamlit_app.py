@@ -19,7 +19,7 @@ body {
     color: #111;
 }
 .card {
-    background-color: #E0DDD8;  /* etwas mehr Grau */
+    background-color: #EBE9E5;  /* aufgehellter Grauton */
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
