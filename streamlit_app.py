@@ -108,7 +108,7 @@ if st.session_state.page == "Dashboard":
         # --Auswahl--
         st.info("Bitte wählen Sie eine Kategorie aus, um Daten anzuzeigen.")
         klima_data = [ ("Hier werden Ihre Sensorbasierten Klimadaten angezeigt. Ist-Werte, als auch Soll-Werte und eine Bewertung des Status Quo sind hier ersichtlich")]
-        boden_data = [ ("Hier werden Ihre Sensorbasierten Produktdaten angezeigt. Ist-Werte, als auch Soll-Werte und eine Bewertung des Status Quo sind hier ersichtlich"]
+        boden_data = [ ("Hier werden Ihre Sensorbasierten Produktdaten angezeigt. Ist-Werte, als auch Soll-Werte und eine Bewertung des Status Quo sind hier ersichtlich")]
         wasser_data = [ ("Hier werden Ihre Sensorbasierten Wasserdaten angezeigt. Ist-Werte, als auch Soll-Werte und eine Bewertung des Status Quo sind hier ersichtlich")]
 
     # Linke Spalte: Wassermanagement & Sicherheit
