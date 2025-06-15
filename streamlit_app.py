@@ -88,7 +88,7 @@ if category == "C3":
         wasser_data = [
             ("Wasserqualität (NTU)", "5.0 NTU", "0–2 NTU", "🔴 Kritisch – Wasser evtl. gekippt")
         ]
-    elif category == "C2":
+elif category == "C2":
         # Gurke
         klima_data = [
             ("Temperatur (Luft)", "21.0 °C", "18–24 °C", "🟢 OK"),
@@ -105,7 +105,7 @@ if category == "C3":
         wasser_data = [
             ("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")
         ]s
-    else:
+else:
         # Auswahl (C0)
         klima_data = ["Hier werden Ihre klimabezogenen Sensor-Daten angezeigt."]
         boden_data = ["Hier werden Ihre bodenbezogenen Sensor-Daten angezeigt."]
