@@ -71,7 +71,7 @@ if st.session_state.page == "Dashboard":
     c1, c2, c3 = st.columns(3)
 
     # Daten vorbereiten
-if category == "C3":
+    if category == "C3":
         # Paprika
         klima_data = [
             ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
@@ -88,7 +88,7 @@ if category == "C3":
         wasser_data = [
             ("Wasserqualität (NTU)", "5.0 NTU", "0–2 NTU", "🔴 Kritisch – Wasser evtl. gekippt")
         ]
-elif category == "C2":
+    elif category == "C2":
         # Gurke
         klima_data = [
             ("Temperatur (Luft)", "21.0 °C", "18–24 °C", "🟢 OK"),
@@ -104,8 +104,8 @@ elif category == "C2":
         ]
         wasser_data = [
             ("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")
-        ]s
-else:
+        ]
+    else:
         # Auswahl (C0)
         klima_data = ["Hier werden Ihre klimabezogenen Sensor-Daten angezeigt."]
         boden_data = ["Hier werden Ihre bodenbezogenen Sensor-Daten angezeigt."]
@@ -113,13 +113,13 @@ else:
 
     # Linke Spalte: Wassermanagement & Sicherheit
     with c1:
-        st.markdown("### Wassermanagement")
+        st.markdown("### Wassermanagement & Sicherheit")
         for text in wasser_data:
             st.markdown(f"<div class='card'>{text}</div>", unsafe_allow_html=True)
 
     # Mittlere Spalte: Pflanzen- & Bodenüberwachung
     with c2:
-        st.markdown("### Produktüberwachung")
+        st.markdown("### Pflanzen- & Bodenüberwachung")
         for text in boden_data:
             st.markdown(f"<div class='card'>{text}</div>", unsafe_allow_html=True)
 
