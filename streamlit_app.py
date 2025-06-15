@@ -19,7 +19,7 @@ body {
     color: #111;
 }
 .card {
-    background-color: #f2f2f2;
+    background-color: #ECE5D9;
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -176,7 +176,6 @@ elif st.session_state.page == "Recommendations":
 
 🔴 Mehrere kritische Werte wurden gleichzeitig festgestellt. Eine Alarmmeldung wurde an den Betreiber gesendet.
 """)
-
     with colB:
         st.markdown("#### Handlungsempfehlungen")
         if category == "C0":
