@@ -33,7 +33,7 @@ button[kind="secondary"], div[data-baseweb="select"] {
 }
 /* Neue Regel: verkleinert nur die Schrift in Streamlit-Buttons */
 button[kind="secondary"], .stButton > button {
-    font-size: 0.8rem !important;
+    font-size: 0.5rem !important;
 }
 button[kind="secondary"]:hover {
     background-color: #0f3e3a !important;
