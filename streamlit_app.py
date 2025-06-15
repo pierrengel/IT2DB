@@ -23,6 +23,7 @@ body {
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
+    font-size: 0.9rem;
 }
 button[kind="secondary"], div[data-baseweb="select"] {
     background-color: #134e4a !important;
@@ -48,14 +49,13 @@ a { text-decoration: none; }
 </style>
 """, unsafe_allow_html=True)
 
-# ---- HEADER: Logo / Spacer / Dropdown / To-Do / Home ----
+# ---- HEADER: Logo / Spacer / Auswahl / To-Do / Home ----
 col1, col2, col3, col4, col5 = st.columns([2, 4, 1, 1, 1], gap="small")
 with col1:
     st.image("LOGOBODO.jpg", width=140)
 with col2:
     st.write("")  # spacer
 with col3:
-    # Auswahl → C0, Gurke → C2, Paprika → C3
     category_map = {"Auswahl": "C0", "Gurke": "C2", "Paprika": "C3"}
     choice = st.selectbox("", list(category_map.keys()), label_visibility="collapsed")
     category = category_map[choice]
@@ -66,87 +66,68 @@ with col5:
     if st.button("Home"):
         st.session_state.page = "Dashboard"
 
-
 # ---- PAGE 1: DASHBOARD ----
 if st.session_state.page == "Dashboard":
     c1, c2, c3 = st.columns(3)
 
-    # --- Daten je Kategorie ---
+    # Daten vorbereiten
     if category == "C3":
         # Paprika
         klima_data = [
-            ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
-            ("Luftfeuchtigkeit", "81 %", "60–80 %", "🟠 Grenzwertig"),
-            ("CO₂-Konzentration", "1001 ppm", "600–1000 ppm", "🟠 Grenzwertig"),
-            ("Lichtintensität", "225 µmol/m²/s", "150–300 µmol/m²/s", "🟢 OK"),
-            ("Blatt-Temperatur", "27 °C", "18–26 °C", "🔴 Zu hoch")
+            "Temperatur (Luft): 25 °C (Soll 18–24 °C) 🔴 Zu hoch",
+            "Luftfeuchtigkeit: 81 % (Soll 60–80 %) 🟠 Grenzwertig",
+            "CO₂-Konzentration: 1001 ppm (Soll 600–1000 ppm) 🟠 Grenzwertig",
+            "Lichtintensität: 225 µmol/m²/s (Soll 150–300) 🟢 OK",
+            "Blatt-Temperatur: 27 °C (Soll 18–26 °C) 🔴 Zu hoch"
         ]
         boden_data = [
-            ("Bodenfeuchte", "41 %", "25–40 %", "🟠 Leicht erhöht"),
-            ("EC-Wert (Düngesalze)", "3.0 mS/cm", "1.0–2.0 mS/cm", "🔴 Deutlich zu hoch"),
-            ("pH-Wert (Wasser)", "7.5", "5.8–6.5", "🔴 Zu basisch")
+            "Bodenfeuchte: 41 % (Soll 25–40 %) 🟠 Leicht erhöht",
+            "EC-Wert (Düngesalze): 3.0 mS/cm (Soll 1.0–2.0) 🔴 Deutlich zu hoch",
+            "pH-Wert (Wasser): 7.5 (Soll 5.8–6.5) 🔴 Zu basisch"
         ]
         wasser_data = [
-            ("Wasserqualität (NTU)", "5.0 NTU", "0–2 NTU", "🔴 Kritisch – Wasser evtl. gekippt")
+            "Wasserqualität (NTU): 5.0 (Soll 0–2) 🔴 Kritisch – Wasser evtl. gekippt"
         ]
-
     elif category == "C2":
         # Gurke
         klima_data = [
-            ("Temperatur (Luft)", "21.0 °C", "18–24 °C", "🟢 OK"),
-            ("Luftfeuchtigkeit", "70.0 %", "60–80 %", "🟢 OK"),
-            ("CO₂-Konzentration", "800 ppm", "600–1000 ppm", "🟢 OK"),
-            ("Lichtintensität", "225 µmol/m²/s", "150–300 µmol/m²/s", "🟢 OK"),
-            ("Blatt-Temperatur", "22.0 °C", "18–26 °C", "🟢 OK")
+            "Temperatur (Luft): 21.0 °C (Soll 18–24 °C) 🟢 OK",
+            "Luftfeuchtigkeit: 70 % (Soll 60–80 %) 🟢 OK",
+            "CO₂-Konzentration: 800 ppm (Soll 600–1000 ppm) 🟢 OK",
+            "Lichtintensität: 225 µmol/m²/s (Soll 150–300) 🟢 OK",
+            "Blatt-Temperatur: 22 °C (Soll 18–26 °C) 🟢 OK"
         ]
         boden_data = [
-            ("Bodenfeuchte", "32.5 %", "25–40 %", "🟢 OK"),
-            ("EC-Wert (Düngesalze)", "1.5 mS/cm", "1.0–2.0 mS/cm", "🟢 OK"),
-            ("pH-Wert (Wasser)", "6.15", "5.8–6.5", "🟢 OK")
+            "Bodenfeuchte: 32.5 % (Soll 25–40 %) 🟢 OK",
+            "EC-Wert (Düngesalze): 1.5 mS/cm (Soll 1.0–2.0) 🟢 OK",
+            "pH-Wert (Wasser): 6.15 (Soll 5.8–6.5) 🟢 OK"
         ]
         wasser_data = [
-            ("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")
+            "Wasserqualität (NTU): 1.0 (Soll 0–2) 🟢 OK"
         ]
-
     else:
-        # Auswahl (C0) → nur Platzhalter-Texte
-        klima_data = [("Hier werden Ihre klimabezogenen Sensor-Daten angezeigt.")]  # nur 1-Tupel
-        boden_data = [("Hier werden Ihre bodenbezogenen Sensor-Daten angezeigt.")]  # nur 1-Tupel
-        wasser_data = [("Hier werden Ihre wasserbezogenen Sensor-Daten angezeigt.")]  # nur 1-Tupel
+        # Auswahl (C0)
+        klima_data = ["Hier werden Ihre klimabezogenen Sensor-Daten angezeigt."]
+        boden_data = ["Hier werden Ihre bodenbezogenen Sensor-Daten angezeigt."]
+        wasser_data = ["Hier werden Ihre wasserbezogenen Sensor-Daten angezeigt."]
 
-    # --- Linke Spalte: Wassermanagement & Sicherheit ---
+    # Linke Spalte: Wassermanagement & Sicherheit
     with c1:
-        st.markdown("### Wassermanagement")
-        for item in wasser_data:
-            text = item[0]  # nur einen Wert
-            st.markdown(f"""
-            <div class='card' style='font-size:0.9rem;'>
-              {text}
-            </div>
-            """, unsafe_allow_html=True)
+        st.markdown("### Wassermanagement & Sicherheit")
+        for text in wasser_data:
+            st.markdown(f"<div class='card'>{text}</div>", unsafe_allow_html=True)
 
-    # --- Mittlere Spalte: Pflanzen- & Bodenüberwachung ---
+    # Mittlere Spalte: Pflanzen- & Bodenüberwachung
     with c2:
-        st.markdown("### Produktüberwachung")
-        for item in boden_data:
-            text = item[0]
-            st.markdown(f"""
-            <div class='card' style='font-size:0.9rem;'>
-              {text}
-            </div>
-            """, unsafe_allow_html=True)
+        st.markdown("### Pflanzen- & Bodenüberwachung")
+        for text in boden_data:
+            st.markdown(f"<div class='card'>{text}</div>", unsafe_allow_html=True)
 
-    # --- Rechte Spalte: Klimaüberwachung ---
+    # Rechte Spalte: Klimaüberwachung
     with c3:
         st.markdown("### Klimaüberwachung")
-        for item in klima_data:
-            text = item[0]
-            st.markdown(f"""
-            <div class='card' style='font-size:0.9rem;'>
-              {text}
-            </div>
-            """, unsafe_allow_html=True)
-
+        for text in klima_data:
+            st.markdown(f"<div class='card'>{text}</div>", unsafe_allow_html=True)
 
 # ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN (To-Do) ----
 elif st.session_state.page == "Recommendations":
@@ -155,60 +136,46 @@ elif st.session_state.page == "Recommendations":
 
     colA, colB = st.columns(2, gap="large")
 
-    # --- Spalte A: Vom System erledigt ---
     with colA:
         st.markdown("#### Vom System erledigt")
         if category == "C3":
             st.markdown("""
-🔴 Die Grenzwerte der Wasserqualität wurden überschritten (5 NTU statt max. 2 NTU). Die Bewässerung wurde deshalb automatisch gestoppt.  
-🔴 Die Luftfeuchtigkeit liegt mit 81 % über dem optimalen Bereich. Die Lüftung wurde automatisch aktiviert.  
-🔴 Die Lufttemperatur beträgt 25 °C, die Blatttemperatur liegt zwischen 27 und 29,5 °C. Das Kühlsystem wurde zur Temperatursenkung eingeschaltet.  
-🔴 Der CO₂-Wert liegt bei 1001 ppm und damit über dem Grenzwert. Die CO₂-Zufuhr wurde automatisch deaktiviert.  
-🔴 Mehrere kritische Werte wurden gleichzeitig festgestellt. Eine Alarmmeldung wurde an den Betreiber gesendet.
+🔴 Die Grenzwerte der Wasserqualität wurden überschritten (5 NTU statt max. 2 NTU).  
+🔴 Die Luftfeuchtigkeit liegt mit 81 % über dem optimalen Bereich.  
+🔴 Die Lufttemperatur beträgt 25 °C / Blatt: 27–29,5 °C – Kühlsystem aktiv.  
+🔴 CO₂ bei 1001 ppm > Grenzwert – CO₂-Zufuhr gestoppt.  
+🔴 Mehrere kritische Werte → Alarmmeldung an Betreiber.
 """)
         elif category == "C2":
             st.markdown("""
-🟢 Die Bodenfeuchtigkeit liegt mit 32,5 % im optimalen Bereich. Die Bewässerung wurde erfolgreich abgeschlossen.  
-🟢 Die Luftfeuchtigkeit beträgt 70 % und liegt im Zielbereich. Die Lüftung läuft im Standardbetrieb.  
-🟢 Die Temperaturregelung ist stabil. Lufttemperatur (21 °C) und Blatttemperatur (22 °C) sind optimal.  
-🟢 Der CO₂-Wert liegt mit 800 ppm im Idealbereich. Die CO₂-Zufuhr ist aktiv.  
-🟢 Es wurden keine kritischen Abweichungen festgestellt. Systemstatus: stabil.
+🟢 Bodenfeuchte 32,5 % → Bewässerung abgeschlossen.  
+🟢 Luftfeuchte 70 % → Lüftung im Standardbetrieb.  
+🟢 Temp. Luft: 21 °C, Blatt: 22 °C – OK.  
+🟢 CO₂ 800 ppm – Zufuhr aktiv.  
+🟢 Keine kritischen Abweichungen. System stabil.
 """)
         else:
             st.info("Keine automatisierten Maßnahmen verfügbar.")
 
-    # --- Spalte B: Handlungsempfehlungen ---
     with colB:
         st.markdown("#### Handlungsempfehlungen")
         if category == "C3":
             st.markdown("""
 🔴 🧪 **Wassertank prüfen und ggf. reinigen**  
-NTU-Wert stark erhöht – kann auf Algen, Sedimente oder Bakterien im Tank hinweisen.  
-🟠 🧴 **Frischwasser oder Filter tauschen**  
-Wasserqualität außerhalb Toleranz → evtl. Wasserquelle kontaminiert.  
-🟠 ⚖️ **Düngergabe unterbrechen/anpassen**  
-EC-Wert bei 3.0–5.5 mS/cm = Überdüngung möglich → Nährstoffbrand vermeiden.  
-🟠 🧫 **Blätter auf Schimmel / Schädlinge prüfen**  
-Hohe Luftfeuchte + Wärme = optimales Milieu für Pilze.  
-🟡 🧯 **Manuelle Schattierung aktivieren**  
-Licht in Kombination mit hoher Temperatur kann Verbrennungen fördern.  
-🟢 🌡️ **Zusätzliche Thermomatten entfernen (falls vorhanden)**  
-Zu hohe Temperaturen → Verdacht auf interne Wärmequellen.  
-🟢 📋 **Daten manuell protokollieren**  
-Ggf. ergänzen, ob zusätzliche Beobachtungen gemacht wurden (Geruch, Trübung, Geräusche etc.).
+🟠 🧴 **Filter tauschen**  
+🟠 ⚖️ **Düngergabe anpassen**  
+🟠 🧫 **Schimmel/Schädlinge prüfen**  
+🟡 🧯 **Schattierung aktivieren**  
+🟢 🌡️ **Thermomatten entfernen**  
+🟢 📋 **Daten manuell protokollieren**
 """)
         elif category == "C2":
             st.markdown("""
 🟢 🔍 **Routinekontrolle Wassertank**  
-Wasserqualität gut (1.0 NTU), aber regelmäßige Sichtprüfung empfehlenswert.  
-🟢 🧴 **Filterwartung (alle X Wochen)**  
-Wasserfilter in gutem Zustand, aber Reinigung gemäß Wartungsplan prüfen.  
+🟢 🧴 **Filterwartung**  
 🟢 📈 **Düngermenge protokollieren**  
-EC-Wert (1.5 mS/cm) gut, aber Protokollierung hilft bei Langzeitoptimierung.  
-🟢 📋 **Allgemeine Sichtprüfung der Pflanzen**  
-Keine Auffälligkeiten, aber regelmäßige Kontrolle auf Blattveränderungen sinnvoll.  
-🟢 🪴 **Testweise Blattproben für Labor (optional)**  
-Zur Optimierung der Nährstoffstrategie bei empfindlicher Sorte.
+🟢 📋 **Sichtprüfung Pflanzen**  
+🟢 🪴 **Blattproben (optional)**
 """)
         else:
             st.info("Keine manuellen Anweisungen verfügbar.")
