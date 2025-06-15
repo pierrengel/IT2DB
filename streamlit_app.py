@@ -50,21 +50,30 @@ a { text-decoration: none; }
 """, unsafe_allow_html=True)
 
 # ---- HEADER: Logo / Spacer / Dropdown / To-Do / Home ----
-col1, col2, col3, col4, col5 = st.columns([2, 4, 1, 1, 1], gap="small")
+# ---- HEADER: Logo / Spacer / Dropdown / To-Do+Home in einer Spalte ----
+col1, col2, col3, col4 = st.columns([2, 4, 1, 1], gap="small")
+
 with col1:
     st.image("LOGOBODO.jpg", width=140)
+
 with col2:
     st.write("")  # spacer
+
 with col3:
     category_map = {"Auswahl": "C0", "Gurke": "C2", "Paprika": "C3"}
     choice = st.selectbox("", list(category_map.keys()), label_visibility="collapsed")
     category = category_map[choice]
+
 with col4:
-    if st.button("To-Do"):
-        st.session_state.page = "Recommendations"
-with col5:
-    if st.button("Home"):
-        st.session_state.page = "Dashboard"
+    # hier zwei Unterspalten mit identischem 'small'-Gap
+    btn_col1, btn_col2 = st.columns(2, gap="small")
+    with btn_col1:
+        if st.button("To-Do"):
+            st.session_state.page = "Recommendations"
+    with btn_col2:
+        if st.button("Home"):
+            st.session_state.page = "Dashboard"
+
 
 # ---- PAGE 1: DASHBOARD ----
 if st.session_state.page == "Dashboard":
