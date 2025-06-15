@@ -71,87 +71,75 @@ if st.session_state.page == "Dashboard":
     c1, c2, c3 = st.columns(3)
 
     if category == "C0":
-        # Platzhalter-Daten, später einzeln anpassbar
         wasser_data = [("Hier werden Ihre sensorbasierten Wasserdaten angezeigt.", "", "", "")]
         boden_data  = [("Hier werden Ihre sensorbasierten Produktdaten angezeigt.", "", "", "")]
-        klima_data  = [("Hier werden Ihre sensorbasierten Klimadaten angezeigt.",       "", "", "")]
-
+        klima_data  = [("Hier werden Ihre sensorbasierten Klimadaten angezeigt.", "", "", "")]
     elif category == "C2":
-        # Gurke
-        wasser_data = [
-            ("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")
-        ]
-        boden_data = [
+        wasser_data = [("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")]
+        boden_data  = [
             ("Bodenfeuchte", "32.5 %", "25–40 %", "🟢 OK"),
             ("EC-Wert (Düngesalze)", "1.5 mS/cm", "1.0–2.0 mS/cm", "🟢 OK"),
-            ("pH-Wert (Wasser)", "6.15", "5.8–6.5", "🟢 OK")
+            ("pH-Wert (Wasser)", "6.15", "5.8–6.5", "🟢 OK"),
         ]
-        klima_data = [
+        klima_data  = [
             ("Temperatur (Luft)", "21.0 °C", "18–24 °C", "🟢 OK"),
             ("Luftfeuchtigkeit", "70.0 %", "60–80 %", "🟢 OK"),
             ("CO₂-Konzentration", "800 ppm", "600–1000 ppm", "🟢 OK"),
             ("Lichtintensität", "225 µmol/m²/s", "150–300 µmol/m²/s", "🟢 OK"),
-            ("Blatt-Temperatur", "22.0 °C", "18–26 °C", "🟢 OK")
+            ("Blatt-Temperatur", "22.0 °C", "18–26 °C", "🟢 OK"),
         ]
-
-    else:  # category == "C3"
-        # Paprika
-        wasser_data = [
-            ("Wasserqualität (NTU)", "5.0 NTU", "0–2 NTU", "🔴 Kritisch – Wasser evtl. gekippt")
-        ]
-        boden_data = [
+    else:  # C3
+        wasser_data = [("Wasserqualität (NTU)", "5.0 NTU", "0–2 NTU", "🔴 Kritisch – Wasser evtl. gekippt")]
+        boden_data  = [
             ("Bodenfeuchte", "41 %", "25–40 %", "🟠 Leicht erhöht"),
             ("EC-Wert (Düngesalze)", "3.0 mS/cm", "1.0–2.0 mS/cm", "🔴 Deutlich zu hoch"),
-            ("pH-Wert (Wasser)", "7.5", "5.8–6.5", "🔴 Zu basisch")
+            ("pH-Wert (Wasser)", "7.5", "5.8–6.5", "🔴 Zu basisch"),
         ]
-        klima_data = [
+        klima_data  = [
             ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
             ("Luftfeuchtigkeit", "81 %", "60–80 %", "🟠 Grenzwertig"),
             ("CO₂-Konzentration", "1001 ppm", "600–1000 ppm", "🟠 Grenzwertig"),
             ("Lichtintensität", "225 µmol/m²/s", "150–300 µmol/m²/s", "🟢 OK"),
-            ("Blatt-Temperatur", "27 °C", "18–26 °C", "🔴 Zu hoch")
+            ("Blatt-Temperatur", "27 °C", "18–26 °C", "🔴 Zu hoch"),
         ]
 
-    # Linke Spalte: Wassermanagement & Sicherheit
+    # Linke Spalte
     with c1:
         st.markdown("### Wassermanagement")
-        for p, i, s, stt in wasser_data:
+        for p,i,s,stt in wasser_data:
             st.markdown(f"""
             <div class='card'>
               <strong>{p}</strong><br>
-              {('Ist-Wert: ' + i + '<br>') if i else ''}
-              {('Sollbereich: <span style="color:#555;">' + s + '</span><br>') if s else ''}
-              {('Status: <span style="font-weight:bold;">' + stt + '</span>') if stt else ''}
-            </div>
-            """, unsafe_allow_html=True)
+              {('Ist-Wert: '+i+'<br>') if i else ''}
+              {('Sollbereich: <span style="color:#555;">'+s+'</span><br>') if s else ''}
+              {('Status: <span style="font-weight:bold;">'+stt+'</span>') if stt else ''}
+            </div>""", unsafe_allow_html=True)
 
-    # Mittlere Spalte: Pflanzen- & Bodenüberwachung
+    # Mittlere Spalte
     with c2:
         st.markdown("### Produktüberwachung")
-        for p, i, s, stt in boden_data:
+        for p,i,s,stt in boden_data:
             st.markdown(f"""
             <div class='card'>
               <strong>{p}</strong><br>
-              {('Ist-Wert: ' + i + '<br>') if i else ''}
-              {('Sollbereich: <span style="color:#555;">' + s + '</span><br>') if s else ''}
-              {('Status: <span style="font-weight:bold;">' + stt + '</span>') if stt else ''}
-            </div>
-            """, unsafe_allow_html=True)
+              {('Ist-Wert: '+i+'<br>') if i else ''}
+              {('Sollbereich: <span style="color:#555;">'+s+'</span><br>') if s else ''}
+              {('Status: <span style="font-weight:bold;">'+stt+'</span>') if stt else ''}
+            </div>""", unsafe_allow_html=True)
 
-    # Rechte Spalte: Klimaüberwachung
+    # Rechte Spalte
     with c3:
         st.markdown("### Klimaüberwachung")
-        for p, i, s, stt in klima_data:
+        for p,i,s,stt in klima_data:
             st.markdown(f"""
             <div class='card'>
               <strong>{p}</strong><br>
-              {('Ist-Wert: ' + i + '<br>') if i else ''}
-              {('Sollbereich: <span style="color:#555;">' + s + '</span><br>') if s else ''}
-              {('Status: <span style="font-weight:bold;">' + stt + '</span>') if stt else ''}
-            </div>
-            """, unsafe_allow_html=True)
+              {('Ist-Wert: '+i+'<br>') if i else ''}
+              {('Sollbereich: <span style="color:#555;">'+s+'</span><br>') if s else ''}
+              {('Status: <span style="font-weight:bold;">'+stt+'</span>') if stt else ''}
+            </div>""", unsafe_allow_html=True)
 
-# ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN (To-Do) ----
+# ---- PAGE 2: TO-DO ----
 elif st.session_state.page == "Recommendations":
     st.markdown("### 📋 Handlungsempfehlungen")
     st.markdown("Hier erscheinen Ihre individuellen Empfehlungen basierend auf aktuellen Messwerten.")
@@ -192,6 +180,7 @@ elif st.session_state.page == "Recommendations":
         if category == "C0":
             st.markdown("Hier wird Ihnen ein Überblick gegeben über die Handlungsempfehlungen. Bodo hat diese für Sie nach Priorität sortiert.")
         elif category == "C2":
+            st.markdown("""
 🟢 🔍 **Routinekontrolle Wassertank**  
 Wasserqualität gut (1.0 NTU), aber regelmäßige Sichtprüfung empfehlenswert.
 
