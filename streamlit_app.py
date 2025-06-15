@@ -19,7 +19,7 @@ body {
     color: #111;
 }
 .card {
-    background-color: #F5F1E0;  /* etwas helleres, warmes Grau */
+    background-color: #E0DDD8;  /* etwas mehr Grau */
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -75,7 +75,7 @@ if st.session_state.page == "Dashboard":
     if category == "C0":
         wasser_data = [("Hier werden Ihre sensorbasierten Wasserdaten angezeigt.", "", "", "")]
         boden_data  = [("Hier werden Ihre sensorbasierten Produktdaten angezeigt.", "", "", "")]
-        klima_data  = [("Hier werden Ihre sensorbasierten Klimadaten angezeigt.",       "", "", "")]
+        klima_data  = [("Hier werden Ihre sensorbasierten Klimadaten angezeigt.",   "", "", "")]
     elif category == "C2":
         wasser_data = [("Wasserqualität (NTU)", "1.0 NTU", "0–2 NTU", "🟢 OK")]
         boden_data = [
@@ -114,8 +114,7 @@ if st.session_state.page == "Dashboard":
               {('Ist-Wert: ' + i + '<br>') if i else ''}
               {('Sollbereich: <span style="color:#555;">' + s + '</span><br>') if s else ''}
               {('Status: <span style="font-weight:bold;">' + stt + '</span>') if stt else ''}
-            </div>
-            """, unsafe_allow_html=True)
+            </div>""", unsafe_allow_html=True)
 
     with c2:
         st.markdown("### Produktüberwachung")
@@ -126,8 +125,7 @@ if st.session_state.page == "Dashboard":
               {('Ist-Wert: ' + i + '<br>') if i else ''}
               {('Sollbereich: <span style="color:#555;">' + s + '</span><br>') if s else ''}
               {('Status: <span style="font-weight:bold;">' + stt + '</span>') if stt else ''}
-            </div>
-            """, unsafe_allow_html=True)
+            </div>""", unsafe_allow_html=True)
 
     with c3:
         st.markdown("### Klimaüberwachung")
@@ -138,8 +136,7 @@ if st.session_state.page == "Dashboard":
               {('Ist-Wert: ' + i + '<br>') if i else ''}
               {('Sollbereich: <span style="color:#555;">' + s + '</span><br>') if s else ''}
               {('Status: <span style="font-weight:bold;">' + stt + '</span>') if stt else ''}
-            </div>
-            """, unsafe_allow_html=True)
+            </div>""", unsafe_allow_html=True)
 
 # ---- PAGE 2: HANDLUNGSEMPFEHLUNGEN ----
 elif st.session_state.page == "Recommendations":
@@ -182,41 +179,41 @@ elif st.session_state.page == "Recommendations":
             st.markdown("Hier wird Ihnen ein Überblick gegeben über die Handlungsempfehlungen. Bodo hat diese für Sie nach Priorität sortiert.")
         elif category == "C2":
             st.markdown("""
-🟢 🔍 **Routinekontrolle Wassertank**
+🟢 🔍 **Routinekontrolle Wassertank**  
 Wasserqualität gut (1.0 NTU), aber regelmäßige Sichtprüfung empfehlenswert.
 
-🟢 🧴 **Filterwartung (alle X Wochen)**
+🟢 🧴 **Filterwartung (alle X Wochen)**  
 Wasserfilter in gutem Zustand, aber Reinigung gemäß Wartungsplan prüfen.
 
-🟢 📈 **Düngermenge protokollieren**
+🟢 📈 **Düngermenge protokollieren**  
 EC-Wert (1.5 mS/cm) gut, aber Protokollierung hilft bei Langzeitoptimierung.
 
-🟢 📋 **Allgemeine Sichtprüfung der Pflanzen**
+🟢 📋 **Allgemeine Sichtprüfung der Pflanzen**  
 Keine Auffälligkeiten, aber regelmäßige Kontrolle auf Blattveränderungen sinnvoll.
 
-🟢 🪴 **Testweise Blattproben für Labor (optional)**
+🟢 🪴 **Testweise Blattproben für Labor (optional)**  
 Zur Optimierung der Nährstoffstrategie bei empfindlicher Sorte.
 """)
         else:
             st.markdown("""
-🔴 🧪 **Wassertank prüfen und ggf. reinigen**
+🔴 🧪 **Wassertank prüfen und ggf. reinigen**  
 NTU-Wert stark erhöht – kann auf Algen, Sedimente oder Bakterien im Tank hinweisen.
 
-🟠 🧴 **Frischwasser oder Filter tauschen**
+🟠 🧴 **Frischwasser oder Filter tauschen**  
 Wasserqualität außerhalb Toleranz → evtl. Wasserquelle kontaminiert.
 
-🟠 ⚖️ **Düngergabe unterbrechen/anpassen**
+🟠 ⚖️ **Düngergabe unterbrechen/anpassen**  
 EC-Wert bei 3.0–5.5 mS/cm = Überdüngung möglich → Nährstoffbrand vermeiden.
 
-🟠 🧫 **Blätter auf Schimmel / Schädlinge prüfen**
+🟠 🧫 **Blätter auf Schimmel / Schädlinge prüfen**  
 Hohe Luftfeuchte + Wärme = optimales Milieu für Pilze.
 
-🟡 🧯 **Manuelle Schattierung aktivieren**
+🟡 🧯 **Manuelle Schattierung aktivieren**  
 Licht in Kombination mit hoher Temperatur kann Verbrennungen fördern.
 
-🟢 🌡️ **Zusätzliche Thermomatten entfernen (falls vorhanden)**
+🟢 🌡️ **Zusätzliche Thermomatten entfernen (falls vorhanden)**  
 Zu hohe Temperaturen → Verdacht auf interne Wärmequellen.
 
-🟢 📋 **Daten manuell protokollieren**
+🟢 📋 **Daten manuell protokollieren**  
 Ggf. ergänzen, ob zusätzliche Beobachtungen gemacht wurden (Geruch, Trübung, Geräusche etc.).
 """)
