@@ -19,7 +19,7 @@ body {
     color: #111;
 }
 .card {
-    background-color: #EBE9E5;  /* aufgehellter Grauton */
+    background-color: #F7F6F3;  /* etwas helleres, dezentes Grau */
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -30,7 +30,7 @@ button[kind="secondary"], div[data-baseweb="select"] {
     color: white !important;
     border-radius: 8px !important;
     height: 42px !important;
-    font-size: 0.8rem !important;
+    font-size: 0.95rem !important;  /* Dropdown-Font etwas größer */
 }
 button[kind="secondary"]:hover {
     background-color: #0f3e3a !important;
