@@ -113,13 +113,13 @@ if st.session_state.page == "Dashboard":
 
     # Linke Spalte: Wassermanagement & Sicherheit
     with c1:
-        st.markdown("### Wassermanagement & Sicherheit")
+        st.markdown("### Wassermanagement")
         for text in wasser_data:
             st.markdown(f"<div class='card'>{text}</div>", unsafe_allow_html=True)
 
     # Mittlere Spalte: Pflanzen- & Bodenüberwachung
     with c2:
-        st.markdown("### Pflanzen- & Bodenüberwachung")
+        st.markdown("### Produktüberwachung")
         for text in boden_data:
             st.markdown(f"<div class='card'>{text}</div>", unsafe_allow_html=True)
 
