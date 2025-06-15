@@ -116,7 +116,7 @@ if st.session_state.page == "Dashboard":
 
     # --- Linke Spalte: Wassermanagement & Sicherheit ---
     with c1:
-        st.markdown("### Wassermanagement & Sicherheit")
+        st.markdown("### Wassermanagement")
         for item in wasser_data:
             text = item[0]  # nur einen Wert
             st.markdown(f"""
@@ -127,7 +127,7 @@ if st.session_state.page == "Dashboard":
 
     # --- Mittlere Spalte: Pflanzen- & Bodenüberwachung ---
     with c2:
-        st.markdown("### Pflanzen- & Bodenüberwachung")
+        st.markdown("### Produktüberwachung")
         for item in boden_data:
             text = item[0]
             st.markdown(f"""
