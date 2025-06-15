@@ -71,7 +71,7 @@ if st.session_state.page == "Dashboard":
     c1, c2, c3 = st.columns(3)
 
     # Daten vorbereiten
-   if category == "C3":
+if category == "C3":
         # Paprika
         klima_data = [
             ("Temperatur (Luft)", "25 °C", "18–24 °C", "🔴 Zu hoch"),
