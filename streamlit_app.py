@@ -72,9 +72,9 @@ if st.session_state.page == "Dashboard":
 
     if category == "C0":
         # Platzhalter-Daten, später einzeln anpassbar
-        wasser_data = [("Hier werden Ihre Wasserdaten angezeigt.", "", "", "")]
-        boden_data  = [("Hier werden Ihre Produktdaten angezeigt.", "", "", "")]
-        klima_data  = [("Hier werden Ihre Klimadaten angezeigt.",       "", "", "")]
+        wasser_data = [("Hier werden Ihre sensorbasierten Wasserdaten angezeigt.", "", "", "")]
+        boden_data  = [("Hier werden Ihre sensorbasierten Produktdaten angezeigt.", "", "", "")]
+        klima_data  = [("Hier werden Ihre sensorbasierten Klimadaten angezeigt.",       "", "", "")]
 
     elif category == "C2":
         # Gurke
