@@ -118,7 +118,7 @@ if st.session_state.page == "Dashboard":
 
     # Middle column: Pflanzen- & Bodenüberwachung
     with col2:
-        st.markdown("### Pflanzen- & Bodenüberwachung")
+        st.markdown("### Produktüberwachung")
         for p, i, s, stt in boden_data:
             st.markdown(f"""
             <div class='card'>
