@@ -164,19 +164,27 @@ elif st.session_state.page == "Recommendations":
             st.markdown("Hier wird Ihnen ein Überblick gezeugt über die Aufgaben, die Bodo bereits erledigt hat.")
         elif category == "C2":
             st.markdown("""
-🟢 Bodenfeuchte 32,5 % → Bewässerung abgeschlossen.  
-🟢 Luftfeuchte 70 % → Lüftung im Standardbetrieb.  
-🟢 Temp. Luft 21 °C, Blatt 22 °C – OK.  
-🟢 CO₂ 800 ppm – Zufuhr aktiv.  
-🟢 Keine kritischen Abweichungen. System stabil.
+🟢 Die Bodenfeuchtigkeit liegt mit 32,5 % im optimalen Bereich. Die Bewässerung wurde erfolgreich abgeschlossen.  
+
+🟢 Die Luftfeuchtigkeit beträgt 70 % und liegt im Zielbereich. Die Lüftung läuft im Standardbetrieb.  
+
+🟢 Die Temperaturregelung ist stabil. Lufttemperatur (21 °C) und Blatttemperatur (22 °C) sind optimal.  
+
+🟢 Der CO₂-Wert liegt mit 800 ppm im Idealbereich. Die CO₂-Zufuhr ist aktiv.  
+
+🟢 Es wurden keine kritischen Abweichungen festgestellt. Systemstatus: stabil.
 """)
         else:
             st.markdown("""
-🔴 Die Grenzwerte der Wasserqualität wurden überschritten (5 NTU statt max. 2 NTU).  
-🔴 Die Luftfeuchtigkeit liegt mit 81 % über dem optimalen Bereich.  
-🔴 Die Lufttemperatur beträgt 25 °C / Blatt: 27–29,5 °C – Kühlsystem aktiv.  
-🔴 CO₂ bei 1001 ppm > Grenzwert – CO₂-Zufuhr gestoppt.  
-🔴 Mehrere kritische Werte → Alarmmeldung an Betreiber.
+🔴 Die Grenzwerte der Wasserqualität wurden überschritten (5 NTU statt max. 2 NTU). Die Bewässerung wurde deshalb automatisch gestoppt. 
+
+🔴 Die Luftfeuchtigkeit liegt mit 81 % über dem optimalen Bereich. Die Lüftung wurde automatisch aktiviert.
+
+🔴 Die Lufttemperatur beträgt 25 °C, die Blatttemperatur liegt zwischen 27 und 29,5 °C. Das Kühlsystem wurde zur Temperatursenkung eingeschaltet. 
+
+🔴 Der CO₂-Wert liegt bei 1001 ppm und damit über dem Grenzwert. Die CO₂-Zufuhr wurde automatisch deaktiviert.  
+
+🔴 Mehrere kritische Werte wurden gleichzeitig festgestellt. Eine Alarmmeldung wurde an den Betreiber gesendet.
 """)
 
     with colB:
@@ -184,20 +192,41 @@ elif st.session_state.page == "Recommendations":
         if category == "C0":
             st.markdown("Hier wird Ihnen ein Überblick gegeben über die Handlungsempfehlungen. Bodo hat diese für Sie nach Priorität sortiert.")
         elif category == "C2":
-            st.markdown("""
 🟢 🔍 **Routinekontrolle Wassertank**  
-🟢 🧴 **Filterwartung**  
+Wasserqualität gut (1.0 NTU), aber regelmäßige Sichtprüfung empfehlenswert.
+
+🟢 🧴 **Filterwartung (alle X Wochen)**  
+Wasserfilter in gutem Zustand, aber Reinigung gemäß Wartungsplan prüfen.
+
 🟢 📈 **Düngermenge protokollieren**  
-🟢 📋 **Sichtprüfung Pflanzen**  
-🟢 🪴 **Blattproben (optional)**
+EC-Wert (1.5 mS/cm) gut, aber Protokollierung hilft bei Langzeitoptimierung.
+
+🟢 📋 **Allgemeine Sichtprüfung der Pflanzen**  
+Keine Auffälligkeiten, aber regelmäßige Kontrolle auf Blattveränderungen sinnvoll.
+
+🟢 🪴 **Testweise Blattproben für Labor (optional)**  
+Zur Optimierung der Nährstoffstrategie bei empfindlicher Sorte.
 """)
         else:
             st.markdown("""
 🔴 🧪 **Wassertank prüfen und ggf. reinigen**  
-🟠 🧴 **Filter tauschen**  
-🟠 ⚖️ **Düngergabe anpassen**  
-🟠 🧫 **Schimmel/Schädlinge prüfen**  
-🟡 🧯 **Schattierung aktivieren**  
-🟢 🌡️ **Thermomatten entfernen**  
-🟢 📋 **Daten manuell protokollieren**
+NTU-Wert stark erhöht – kann auf Algen, Sedimente oder Bakterien im Tank hinweisen.
+
+🟠 🧴 **Frischwasser oder Filter tauschen**  
+Wasserqualität außerhalb Toleranz → evtl. Wasserquelle kontaminiert.
+
+🟠 ⚖️ **Düngergabe unterbrechen/anpassen**  
+EC-Wert bei 3.0–5.5 mS/cm = Überdüngung möglich → Nährstoffbrand vermeiden.
+
+🟠 🧫 **Blätter auf Schimmel / Schädlinge prüfen**  
+Hohe Luftfeuchte + Wärme = optimales Milieu für Pilze.
+
+🟡 🧯 **Manuelle Schattierung aktivieren**  
+Licht in Kombination mit hoher Temperatur kann Verbrennungen fördern.
+
+🟢 🌡️ **Zusätzliche Thermomatten entfernen (falls vorhanden)**  
+Zu hohe Temperaturen → Verdacht auf interne Wärmequellen.
+
+🟢 📋 **Daten manuell protokollieren**  
+Ggf. ergänzen, ob zusätzliche Beobachtungen gemacht wurden (Geruch, Trübung, Geräusche etc.).
 """)
